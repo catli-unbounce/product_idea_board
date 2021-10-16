@@ -6,7 +6,7 @@ $blue-1: #4661E6;
 $blue-2: rgba(55, 63, 104, 1);
 
 $grey-1: #F2F4FF;
-$grey-2: #F7F8FD;
+$background-grey: #F7F8FD;
 $grey-3: #3A4374;
 $grey-4: #647196;
 
@@ -15,12 +15,34 @@ $orange: #F49F85;
 $white: #FFFFFF;
 $aqua: #62BCFA;
 
+@mixin card {
+    border-radius: 1rem;
+    background-color: $white;
+    padding: 1.8rem;
+}
+
+@mixin tag {
+    background-color: $grey-1;
+    border-radius: 1rem;
+}
+
+@mixin button {
+    border-radius: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 2rem 4rem;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html, body {
+html {
     font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
 }
