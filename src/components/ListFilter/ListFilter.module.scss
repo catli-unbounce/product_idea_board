@@ -1,5 +1,25 @@
 @import 'base';
 .filters {
-    
     @include card;
+
+    &__item {
+        @include tag;
+        color: $blue-1;
+
+        &:hover {
+            background-color: $blue-3;
+            cursor: pointer;
+        }
+
+        &-active {
+            color: $white;
+            background-color: $blue-1;
+        }
+    }
+
+    ul {
+        display: flex;
+        flex-flow: row wrap;   
+    }
+    
 }

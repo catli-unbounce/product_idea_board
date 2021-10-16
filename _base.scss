@@ -4,6 +4,7 @@
 $fuschia: #AD1FEA;
 $blue-1: #4661E6;
 $blue-2: rgba(55, 63, 104, 1);
+$blue-3: #CFD7FF;
 
 $grey-1: #F2F4FF;
 $background-grey: #F7F8FD;
@@ -24,6 +25,10 @@ $aqua: #62BCFA;
 @mixin tag {
     background-color: $grey-1;
     border-radius: 1rem;
+    margin: .4rem;
+    padding: .5rem 1rem;
+    font-weight: 800;
+    font-size: 1.2rem;
 }
 
 @mixin button {
@@ -45,4 +50,9 @@ html {
 
 body {
     font-size: 1.6rem;
+    font-family: 'Jost', sans-serif;
+}
+
+ul {
+    list-style: none;
 }

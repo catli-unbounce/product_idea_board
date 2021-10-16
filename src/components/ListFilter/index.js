@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
-import styles from './ListFilter.module.scss';
 const ListFilter = () => {
     return (
-        <div className={styles["filters"]}>
-            Filters
+        <div className="filters">
+            <ul>
+                <li className="filters__item filters__item-active">All</li>
+                <li className="filters__item filters__item-active">All</li>
+                <li className="filters__item filters__item-active">All</li>
+                <li className="filters__item">All</li>
+                <li className="filters__item">All</li>
+                <li className="filters__item">All</li>
+                <li className="filters__item">All</li>
+                <li className="filters__item filters__item-active">All</li>
+            </ul>
         </div>
     )
 }
