@@ -1,0 +1,23 @@
+@import 'base';
+.roadmap {
+    @include card;
+    font-size: 1.2rem;
+    color: $grey-4;
+
+    .title {
+        color: $grey-3;
+        font-weight: 800;
+        font-size: 1.6rem;
+
+        span {
+            float: right;
+        }
+    }
+
+    &__item {
+
+        span {
+            float: right;
+        }
+    }
+}

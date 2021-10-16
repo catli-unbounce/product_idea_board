@@ -1,6 +1,6 @@
 @import 'base';
 @import './components/ListFilter/ListFilter.module.scss';
-
+@import './components/Roadmap/Roadmap.module.scss';
 body {
   background-color: $background-grey;
 }
@@ -13,6 +13,7 @@ main {
 }
 
 .controls {
-  flex: 0 0 30%;
+  flex: 0 0 25%;
+  margin-right: 2rem;
 }
 
