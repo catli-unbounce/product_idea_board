@@ -3,10 +3,10 @@ const Roadmap = () => {
     return (
         <div className="roadmap">
             <ul>
-                <li className="title">Roadmap <span className="roadmap__view-more">View</span></li>
-                <li className="roadmap__item">Planned <span>5</span></li>
-                <li className="roadmap__item">In Progress</li>
-                <li className="roadmap__item">Live</li>
+                <li className="title">Roadmap <a href="#">View</a></li>
+                <li className="roadmap__item">Planned <span className="count">5</span></li>
+                <li className="roadmap__item">In Progress <span className="count">5</span></li>
+                <li className="roadmap__item">Live <span className="count">5</span></li>
             </ul>
         </div>
     )

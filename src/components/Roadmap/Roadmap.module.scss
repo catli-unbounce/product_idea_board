@@ -9,15 +9,22 @@
         font-weight: 800;
         font-size: 1.6rem;
 
-        span {
+        a {
+            font-size: 1.2rem;
             float: right;
+            color: $blue-1;
+            opacity: .8;
+            &:hover {
+
+            }
         }
     }
 
     &__item {
 
-        span {
+        span.count {
             float: right;
+            font-weight: 800;
         }
     }
 }
