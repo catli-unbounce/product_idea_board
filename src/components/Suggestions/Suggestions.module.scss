@@ -2,4 +2,32 @@
     padding: 1.8rem;
     width: 100%;
     color: $white;
+    background-color: $blue-2;
+    border-radius: 1rem;
+    padding: 1.8rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+
+    &__info {
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+
+        img {
+            margin-right: 2rem;
+        }
+
+        .sort-by {
+            font-weight: 400;
+            opacity: .8;
+            margin-left: 2rem;
+        }
+    }
+
+    &__add-btn {
+        margin-left: auto;
+        background-color: $fuschia;
+        color: $grey-1;
+    }
 }

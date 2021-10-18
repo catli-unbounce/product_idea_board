@@ -3,7 +3,7 @@
 //COLORS
 $fuschia: #AD1FEA;
 $blue-1: #4661E6;
-$blue-2: rgba(55, 63, 104, 1);
+$blue-2: #373F68;
 $blue-3: #CFD7FF;
 
 $grey-1: #F2F4FF;
@@ -33,10 +33,12 @@ $aqua: #62BCFA;
 }
 
 @mixin button {
-    border-radius: 1rem;
+    border-radius: .4rem;
     font-weight: 700;
     cursor: pointer;
-    padding: 2rem 4rem;
+    padding: .8rem 2rem;
+    border: none;
+    color: red;
 }
 
 * {
@@ -56,4 +58,10 @@ body {
 
 ul {
     list-style: none;
+}
+
+button {
+    @include button;
+    font-family: inherit;
+    font-size: 1.2rem;
 }

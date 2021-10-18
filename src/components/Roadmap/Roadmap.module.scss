@@ -21,6 +21,29 @@
     }
 
     &__item {
+        margin: .7rem 0;
+
+        .dot {
+            height: 7px;
+            width: 7px;
+            
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 1rem;
+
+        }
+
+        .orange {
+            background-color: #F49F85;
+        }
+
+        .purple {
+            background-color: #AD1FEA;
+        }
+
+        .blue {
+            background-color: #62BCFA;
+        }
 
         span.count {
             float: right;
