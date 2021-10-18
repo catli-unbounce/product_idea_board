@@ -5,7 +5,7 @@ import ListFilter from './components/ListFilter';
 import Roadmap from './components/Roadmap';
 import Header from './components/Header';
 import Suggestions from './components/Suggestions';
-
+import RequestsList from './components/RequestsList';
 function App() {
 
   const [data, setData] = useState({
@@ -21,24 +21,20 @@ function App() {
         productRequests: fetchedData.productRequests,
         currentUser: fetchedData.currentUser
       });
-      console.log(data)
+      
     }
     fetchData();
   }, []);
   return (
-    <div className="App">
-      <main>
-        <div className="controls">
+    <div className="container">
+      <div className="controls">
           <Header></Header>
           <ListFilter></ListFilter>
           <Roadmap></Roadmap>
         </div>
+      <main>      
         <Suggestions></Suggestions>
-        <ul>
-          <li>one</li>
-          <li>one</li>
-          <li>one</li>
-        </ul>
+        <RequestsList></RequestsList>
       </main>
     </div>
   );
