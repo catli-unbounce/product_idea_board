@@ -35,11 +35,30 @@
         }
     }
 
+    &__votes--active {
+        background-color: $blue-1;
+        color: $white;
+
+        .upvote-icon {
+            path {
+                stroke: $white;
+            }
+        }
+    }
+
     &__comments {
         margin-left: auto;
         display: flex;
-        .comments-count {
+        align-items: center;
 
+        .comments-count {
+            font-weight: 800;
+            font-family: inherit;
+            margin-left: 1rem;
+        }
+
+        .inactive {
+            opacity: .4;
         }
     }
 }
