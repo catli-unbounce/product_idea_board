@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
-const RequestsList = () => {
+import RequestsListItem from '../RequestsListItem'
+const RequestsList = ({productRequests}) => {
+    
+    const productRequestsList = productRequests.map((item, index) => {
+        return <RequestsListItem key={index} productRequest={item}></RequestsListItem>
+    })
     return (
         <ul className="requestsList">
-            
+            {productRequestsList}
         </ul>
     )
 }

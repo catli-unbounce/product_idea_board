@@ -3,6 +3,8 @@
 @import './components/Roadmap/Roadmap.module.scss';
 @import './components/Header/Header.module.scss';
 @import './components/Suggestions/Suggestions.module.scss';
+@import './components/RequestsListItem/RequestsListItem.module.scss';
+
 body {
   background-color: $background-grey;
 }
@@ -13,10 +15,12 @@ body {
   display: flex;
   margin-top: 5rem;
 }
+
 main {
   flex: 1;
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+
 }
 
 .controls {

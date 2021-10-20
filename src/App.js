@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
+import {filterForSuggestions} from './helpers.js';
 import './App.scss';
 import ListFilter from './components/ListFilter';
 import Roadmap from './components/Roadmap';
@@ -14,6 +15,7 @@ function App() {
   })
 
   useEffect(() => {
+    filterForSuggestions();
     async function fetchData() {
       const response = await fetch('/data.json');
       const fetchedData = await response.json(response);
@@ -34,7 +36,7 @@ function App() {
         </div>
       <main>      
         <Suggestions></Suggestions>
-        <RequestsList></RequestsList>
+        <RequestsList productRequests={data.productRequests}></RequestsList>
       </main>
     </div>
   );
