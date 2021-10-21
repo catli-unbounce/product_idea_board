@@ -16,6 +16,8 @@ $orange: #F49F85;
 $white: #FFFFFF;
 $aqua: #62BCFA;
 
+$error-red: #D73737;
+
 @mixin card {
     border-radius: 1rem;
     background-color: $white;
@@ -38,7 +40,6 @@ $aqua: #62BCFA;
     cursor: pointer;
     padding: .8rem 2rem;
     border: none;
-    color: red;
 }
 
 * {
@@ -64,4 +65,28 @@ button {
     @include button;
     font-family: inherit;
     font-size: 1.2rem;
+}
+
+textarea:focus, input:focus{
+    outline: solid .5px $blue-1;
+}
+
+.text-input {
+    background-color: $background-grey;
+    padding: .8rem 1.7rem;
+    font-family: inherit;
+    color: $grey-3;
+    border-radius: .3rem;
+
+    &:active {
+        border: none;
+    }
+}
+
+.text-input--active {
+
+}
+
+.text-input--error {
+    outline: solid .5px $error-red;
 }

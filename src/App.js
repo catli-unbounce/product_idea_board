@@ -7,6 +7,14 @@ import Roadmap from './components/Roadmap';
 import Header from './components/Header';
 import Suggestions from './components/Suggestions';
 import RequestsList from './components/RequestsList';
+import RequestForm from './components/RequestForm'
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 function App() {
 
   const [data, setData] = useState({
@@ -29,16 +37,26 @@ function App() {
   }, []);
   return (
     <div className="container">
-      <div className="controls">
-          <Header></Header>
-          <ListFilter></ListFilter>
-          <Roadmap></Roadmap>
-        </div>
-      <main>      
-        <Suggestions></Suggestions>
-        <RequestsList productRequests={data.productRequests}></RequestsList>
-      </main>
+      <Router>
+        <Switch>
+          <Route path="/new">
+            <RequestForm></RequestForm>
+          </Route>
+          <Route path="/">
+            <div className="controls">
+              <Header></Header>
+              <ListFilter></ListFilter>
+              <Roadmap></Roadmap>
+            </div>
+            <main>      
+              <Suggestions></Suggestions>
+              <RequestsList productRequests={data.productRequests}></RequestsList>
+            </main>
+          </Route>
+        </Switch>
+      </Router>
     </div>
+
   );
 }
 

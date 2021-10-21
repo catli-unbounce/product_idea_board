@@ -4,6 +4,7 @@
 @import './components/Header/Header.module.scss';
 @import './components/Suggestions/Suggestions.module.scss';
 @import './components/RequestsListItem/RequestsListItem.module.scss';
+@import './components/RequestForm/RequestForm.module.scss';
 
 body {
   background-color: $background-grey;
@@ -14,6 +15,7 @@ body {
   margin: 0 auto;
   display: flex;
   margin-top: 5rem;
+  justify-content: center;
 }
 
 main {
