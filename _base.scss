@@ -18,6 +18,9 @@ $aqua: #62BCFA;
 
 $error-red: #D73737;
 
+$tablet: 750px;
+$mobile: 450px;
+
 @mixin card {
     border-radius: 1rem;
     background-color: $white;

@@ -45,6 +45,10 @@
                 color: $fuschia;
                 cursor: pointer;
             }
+
+            &:last-child {
+                border-bottom: none;
+            }
         }
     }
 

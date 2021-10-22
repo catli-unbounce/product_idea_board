@@ -30,4 +30,30 @@ main {
   margin-right: 2rem;
 }
 
+@media only screen and (max-width: $tablet) {
+  .container {
+    flex-direction: column;
+  }
 
+  .controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-right: 0;
+
+    .filters {
+      margin-right: 1rem;
+      margin-left: 1rem;
+      
+    }
+
+    .roadmap {
+      flex: 0 0 33%;
+    }
+
+    header {
+      height: initial;
+      flex: 0 0 33%;
+    }
+  }
+}
