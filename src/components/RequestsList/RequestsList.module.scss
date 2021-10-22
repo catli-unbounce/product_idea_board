@@ -1,0 +1,10 @@
+ul {
+
+}
+
+@media only screen and (max-width: $mobile) { 
+    ul.requestsList {
+        width: 90%;
+        margin: 0 auto;
+    }
+}

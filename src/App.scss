@@ -4,6 +4,7 @@
 @import './components/Header/Header.module.scss';
 @import './components/Suggestions/Suggestions.module.scss';
 @import './components/RequestsListItem/RequestsListItem.module.scss';
+@import './components/RequestsList/RequestsList.module.scss';
 @import './components/RequestForm/RequestForm.module.scss';
 
 body {
@@ -30,6 +31,10 @@ main {
   margin-right: 2rem;
 }
 
+.controls-mobile {
+  display: none;
+}
+
 @media only screen and (max-width: $tablet) {
   .container {
     flex-direction: column;
@@ -44,16 +49,68 @@ main {
     .filters {
       margin-right: 1rem;
       margin-left: 1rem;
-      
+      flex: 0 0 40%;
     }
 
     .roadmap {
-      flex: 0 0 33%;
+      flex: initial;
+      display: flex;
+      align-items: center;
+
+      .title  {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      &__item {
+        display: flex;
+        align-items: center;
+
+      }
+
+      .count {
+        margin-left: auto;
+      }
     }
 
     header {
       height: initial;
-      flex: 0 0 33%;
+    }
+  }
+}
+
+@media only screen and (max-width: $mobile) { 
+  .container {
+    width: 100%;
+    margin-top: 0;
+
+    header {
+      border-radius: 0;
+      margin-bottom: 0;
+      flex: 1;
+    }
+
+    .filters, .roadmap {
+      display: none;
+    }
+
+
+    .controls-mobile {
+      display: initial;
+      border: solid red 1px;
+      padding: 1.8rem;
+      width: 80%;
+      margin-left: auto;
+      position: absolute;
+      top: 8rem;
+      right: 0;
+      background-color: $background-grey;
+      z-index: 10;
+      height: 100vh;
+
+      .filters, .roadmap {
+        display: block;
+      }
     }
   }
 }

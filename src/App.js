@@ -48,6 +48,11 @@ function App() {
               <ListFilter></ListFilter>
               <Roadmap></Roadmap>
             </div>
+
+            <div className="controls-mobile">
+              <ListFilter></ListFilter>
+              <Roadmap></Roadmap>
+            </div>
             <main>      
               <Suggestions></Suggestions>
               <RequestsList productRequests={data.productRequests}></RequestsList>
