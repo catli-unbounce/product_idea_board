@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+import newFeedbackIcon from '../../assets/shared/icon-new-feedback.svg';
+import arrowDownIcon from '../../assets/shared/icon-arrow-down.svg';
+import checkIcon from '../../assets/shared/icon-check.svg';
 const RequestForm = () => {
  
     return (
-        <form>
+        <form className="form">
+            <img className="new-icon" src={newFeedbackIcon}></img>
             <h1>Create New Feedback</h1>
 
             <label>
@@ -14,12 +18,13 @@ const RequestForm = () => {
             <label>
                 <h5 className="label">Category</h5>
                 <p className="label-desc">Choose a category for your feedback</p>
-                <li value="feature">Feature</li>
-                <ul className="select-input dropdown">
-                    <li value="ui">UI</li>
-                    <li value="ux">UX</li>
-                    <li value="enhancement">Enhancement</li>
-                    <li value="bug">Bug</li>
+                <li className="text-input first-option" value="feature">Feature<img src={arrowDownIcon}></img></li>
+                <ul className="dropdown form__select-category">
+                    <li className="select-input" value="ui">Feature<img className="check-icon" src={checkIcon}></img></li>
+                    <li className="select-input" value="ui">UI</li>
+                    <li className="select-input" value="ux">UX</li>
+                    <li className="select-input" value="enhancement">Enhancement</li>
+                    <li className="select-input" value="bug">Bug</li>
                 </ul>
 
             </label>
@@ -27,10 +32,13 @@ const RequestForm = () => {
             <label>
                 <h5 className="label">Feedback Detail</h5>
                 <p className="label-desc">Include any specific comments on what should be improved, added, etc.</p>
-                <input className="text-input" name="name" />
+                <textarea className="text-input" name="name" />
             </label>
-
-            <button type="submit">Submit</button>
+            <div className="form__btn-container">
+                <button className="cancel">Cancel</button>
+                            <button type="submit">Add Feedback</button>
+            </div>
+            
         </form>
     )
 }
