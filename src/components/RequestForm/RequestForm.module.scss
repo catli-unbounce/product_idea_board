@@ -5,6 +5,7 @@ form {
     padding: 3rem 3.5rem;
     color: $grey-3;
     align-items: flex-start;
+    border-radius: 5px;
 
     h1 {
         margin-bottom: 2rem;    
@@ -16,11 +17,22 @@ form {
 
     input {
         border: none;
+        width: 100%;
+    }
+
+    label {
+        align-self: stretch;
+        margin-bottom: 2rem;
     }
 
     button {
         display: block;
         align-self: flex-end;
+    }
+
+    p {
+        color: $grey-4;
+        font-size: 1.2rem;
     }
 
     label {

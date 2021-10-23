@@ -70,7 +70,7 @@ button {
     font-size: 1.2rem;
 }
 
-textarea:focus, input:focus{
+textarea:focus, input:focus, select:focus{
     outline: solid .5px $blue-1;
 }
 
@@ -84,6 +84,36 @@ textarea:focus, input:focus{
     &:active {
         border: none;
     }
+}
+
+.select-input {
+    background-color: $background-grey;
+    padding: .8rem 1.7rem;
+    font-family: inherit;
+    color: $grey-3;
+    border-radius: .3rem;
+    border: none;
+
+    &:active {
+        border: none;
+    }
+
+    li {
+        
+        &:not(:first-child) {
+            display: none;
+        }
+    }
+}
+
+.dropdown {
+    background-color: $white;
+    color: $grey-4;
+    font-weight: 400;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    box-shadow: 0px 10px 40px -7px rgba(55, 63, 104, 0.350492);
+    width: 15rem;
 }
 
 .text-input--active {
