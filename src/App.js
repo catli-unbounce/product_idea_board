@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
-import {filterForSuggestions} from './helpers.js';
+import {filterRequestsByStatus} from './helpers.js';
+import backIcon from './assets/shared/icon-arrow-left.svg';
 import './App.scss';
 import ListFilter from './components/ListFilter';
 import Roadmap from './components/Roadmap';
@@ -18,49 +19,61 @@ import {
 function App() {
 
   const [data, setData] = useState({
-    'productRequests': [],
-    'currentUser': {}
+    'all': [],
+    'currentUser': {},
+    'suggestions': [],
+    'planned': [],
+    'live': [],
+    'inProgress':[]
   })
 
   useEffect(() => {
-    filterForSuggestions();
+    
     async function fetchData() {
       const response = await fetch('/data.json');
       const fetchedData = await response.json(response);
       setData({
-        productRequests: fetchedData.productRequests,
-        currentUser: fetchedData.currentUser
+        all: fetchedData.productRequests,
+        currentUser: fetchedData.currentUser,
+        suggestions: filterRequestsByStatus(fetchedData.productRequests, 'suggestion'),
+        planned: filterRequestsByStatus(fetchedData.productRequests, 'planned'),
+        live: filterRequestsByStatus(fetchedData.productRequests, 'live'),
+        inProgress: filterRequestsByStatus(fetchedData.productRequests, 'in-progress')
       });
-      
     }
     fetchData();
   }, []);
   return (
-    <div className="container">
+    
       <Router>
         <Switch>
           <Route path="/new">
-            <RequestForm></RequestForm>
+            <div className="back-link"><img alt="go back" src={backIcon}></img><Link to="/"><a>Go Back</a></Link></div>
+            <div className="container">
+              <RequestForm></RequestForm>
+            </div>
           </Route>
           <Route path="/">
-            <div className="controls">
-              <Header></Header>
-              <ListFilter></ListFilter>
-              <Roadmap></Roadmap>
-            </div>
+            <div className="container">
+              <div className="controls">
+                <Header></Header>
+                <ListFilter></ListFilter>
+                <Roadmap></Roadmap>
+              </div>
 
-            <div className="controls-mobile">
-              <ListFilter></ListFilter>
-              <Roadmap></Roadmap>
+              <div className="controls-mobile">
+                <ListFilter></ListFilter>
+                <Roadmap></Roadmap>
+              </div>
+              <main>      
+                <Suggestions></Suggestions>
+                <RequestsList productRequests={data.suggestions}></RequestsList>
+              </main>
             </div>
-            <main>      
-              <Suggestions></Suggestions>
-              <RequestsList productRequests={data.productRequests}></RequestsList>
-            </main>
           </Route>
         </Switch>
       </Router>
-    </div>
+    
 
   );
 }

@@ -35,7 +35,10 @@
     &__add-btn {
         margin-left: auto;
         background-color: $fuschia;
-        color: $grey-1;
+        
+        a {
+            color: $grey-1;
+        }
     }
 }
 

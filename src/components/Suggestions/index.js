@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import suggestionIcon from '../../assets/suggestions/icon-suggestions.svg'
+import {Link} from "react-router-dom";
 const Suggestions = () => {
     return (
         <div className="suggestions">
@@ -14,7 +15,7 @@ const Suggestions = () => {
                 </ul>
             </div>
            
-            <button className="suggestions__add-btn">+ Add Feedback</button>
+            <button className="suggestions__add-btn"><Link to="/new">+ Add Feedback</Link></button>
         </div>
     )
 }
