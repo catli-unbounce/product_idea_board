@@ -1,4 +1,4 @@
-.suggestions {
+.banner {
     padding: 1.8rem;
     width: 100%;
     color: $white;
@@ -44,7 +44,7 @@
 
 @media only screen and (max-width: $mobile) {  
 
-    .suggestions {
+    .banner {
         border-radius: 0;
     }
 }

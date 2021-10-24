@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import commentsIcon from '../../assets/shared/icon-comments.svg';
 import upIcon from '../../assets/shared/icon-arrow-up.svg';
-// import suggestionIcon from '../../assets/suggestions/icon-suggestions.svg'
 const RequestsListItem = ({productRequest}) => {
     const [active, setActive] = useState(false);
 
