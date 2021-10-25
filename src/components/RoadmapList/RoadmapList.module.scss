@@ -1,0 +1,17 @@
+.roadmap_list {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 5rem;
+    color: $grey-3;
+
+    &__container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__planned, &__inProgress, &__live {
+        flex: 0 0 30%;
+        display: flex;
+        flex-direction: column;
+    }
+}

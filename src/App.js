@@ -16,10 +16,10 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  useHistory
 } from "react-router-dom";
 function App() {
-
+  let history = useHistory();
   const [data, setData] = useState({
     'all': [],
     'currentUser': {},
@@ -46,17 +46,19 @@ function App() {
     fetchData();
   }, []);
   return (
-    
-      <Router>
         <Switch>
           <Route path="/new">
-            <div className="back-link"><img alt="go back" src={backIcon}></img><Link to="/"><a>Go Back</a></Link></div>
+            <div className="back-link"><img alt="go back" src={backIcon}></img><a href="#" onClick={()=> history.goBack()}>Go Back</a></div>
             <div className="container">
               <RequestForm></RequestForm>
             </div>
           </Route>
           <Route path="/roadmap">
-            <RoadmapList></RoadmapList>
+            <RoadmapList
+              planned={data.planned} 
+              inProgress={data.inProgress} 
+              live={data.live}
+            ></RoadmapList>
           </Route>
           <Route path="/">
             <div className="container">
@@ -86,9 +88,6 @@ function App() {
             </div>
           </Route>
         </Switch>
-      </Router>
-    
-
   );
 }
 

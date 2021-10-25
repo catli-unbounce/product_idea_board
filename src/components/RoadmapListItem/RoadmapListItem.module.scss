@@ -1,0 +1,52 @@
+.roadmap_item {
+    border-radius: .5rem;
+    height: 20rem;
+    margin: 2rem 0;
+    padding: 2rem;
+    background-color: $white;
+    &__title {
+        margin-bottom: 1rem;
+    }
+    &__desc {
+        color: $grey-4;
+        font-size: 1.4rem;
+    }
+
+    &__votes {
+        @include tag;
+
+        &-active {
+            color: $white;
+            background-color: $blue-1;
+        }
+    }
+
+    &__comments {
+        margin-left: auto;
+        .comments-count {
+            font-weight: 800;
+            font-family: inherit;
+            margin-left: 1rem;
+        }
+        &:not(.inactive) {
+            cursor: pointer;
+        }
+    }
+
+    &__category {
+        @include tag;
+        margin-left: 0;
+        text-transform: capitalize;
+        color: $blue-1;
+        display: inline-block;
+    }
+
+    div {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.orange {
+    border-top: solid $orange 5px;
+}

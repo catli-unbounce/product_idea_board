@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import newFeedbackIcon from '../../assets/shared/icon-new-feedback.svg';
 import arrowDownIcon from '../../assets/shared/icon-arrow-down.svg';
 import checkIcon from '../../assets/shared/icon-check.svg';
+import { useHistory } from "react-router-dom";
 const RequestForm = () => {
- 
+    let history = useHistory();
     return (
         <form className="form">
             <img className="new-icon" src={newFeedbackIcon}></img>
             <h1>Create New Feedback</h1>
-
             <label>
                 <h5 className="label">Feedback Title</h5>
                 <p className="label-desc">Add a short, descriptive headline</p>

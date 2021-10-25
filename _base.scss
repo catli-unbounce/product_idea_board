@@ -35,6 +35,11 @@ $mobile: 500px;
     padding: .5rem 1rem;
     font-weight: 800;
     font-size: 1.2rem;
+
+    &:hover {
+        background-color: $blue-3;
+        cursor: pointer;
+    }
 }
 
 @mixin button {
@@ -93,6 +98,10 @@ textarea:focus, input:focus, select:focus{
     &:active {
         border: none;
     }
+}
+
+.inactive {
+    opacity: .4;
 }
 
 .first-option {

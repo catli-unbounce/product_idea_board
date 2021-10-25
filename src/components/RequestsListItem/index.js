@@ -21,10 +21,7 @@ const RequestsListItem = ({productRequest}) => {
             </div>
             <div className={productRequest.comments ? "request__comments" : "request__comments inactive"}>
                 <img src={commentsIcon} alt="comments icon"></img>
-
-               
-                    <p className="comments-count">{productRequest.comments ? productRequest.comments.length : 0}</p> 
-                    
+                <p className="comments-count">{productRequest.comments ? productRequest.comments.length : 0}</p> 
             </div>
         </li>
     )

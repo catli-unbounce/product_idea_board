@@ -16,11 +16,6 @@
             margin: .5rem 0;
         }
 
-        &:hover {
-            background-color: $blue-3;
-            cursor: pointer;
-        }
-
         &-active {
             color: $white;
             background-color: $blue-1;
@@ -78,11 +73,6 @@
         }
     }
 
-    
-
-    .inactive {
-        opacity: .4;
-    }
 }
 
 @media only screen and (max-width: $tablet) { 
