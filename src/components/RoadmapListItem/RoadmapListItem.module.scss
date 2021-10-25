@@ -1,6 +1,6 @@
 .roadmap_item {
     border-radius: .5rem;
-    height: 20rem;
+    min-height: 20rem;
     margin: 2rem 0;
     padding: 2rem;
     background-color: $white;
@@ -14,10 +14,20 @@
 
     &__votes {
         @include tag;
-
+        display: flex;
+        flex-direction: column;
+        svg {
+            margin: .5rem 0;
+        }
         &-active {
             color: $white;
             background-color: $blue-1;
+
+            .upvote-icon {
+                path {
+                    stroke: $white;
+                }
+            }
         }
     }
 
@@ -49,4 +59,12 @@
 
 .orange {
     border-top: solid $orange 5px;
+}
+
+.blue {
+    border-top: solid $aqua 5px;
+}
+
+.purple {
+    border-top: solid $fuschia 5px;
 }

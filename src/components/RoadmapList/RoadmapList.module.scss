@@ -1,7 +1,7 @@
 .roadmap_list {
     width: 80%;
     margin: 0 auto;
-    margin-top: 5rem;
+    margin-top: 2rem;
     color: $grey-3;
 
     &__container {
@@ -13,5 +13,50 @@
         flex: 0 0 30%;
         display: flex;
         flex-direction: column;
+    }
+}
+@media only screen and (max-width: $tablet) {   
+    .roadmap_list {
+        width: 100%;
+        margin-top: 0;
+
+        .banner {
+            border-radius: 0;
+            margin-bottom: 5rem;
+        }
+
+        &__mobile-nav {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: solid rgba(140, 146, 179, .4) 1px;
+            margin-bottom: 2rem;
+            h4 {
+                padding-bottom: 2rem;
+                text-align: center;
+                flex: 0 0 33%;
+                cursor: pointer;
+
+                &:not(.active) {
+                    opacity: .4;
+                } 
+            }
+
+
+            .active {
+                border-bottom: solid $fuschia 5px;
+                margin-bottom: -1px;
+                opacity: 1;
+            }
+
+            
+            
+        }
+
+        &__container {
+            flex-direction: column;
+            width: 80%;
+            margin: 0 auto;
+        }
     }
 }
