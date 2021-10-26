@@ -31,9 +31,17 @@ const RoadmapList = ({planned, inProgress, live}) => {
             </div>
             
             <div className="roadmap_list__container">
-                <div className="roadmap_list__planned"><h4>Planned({plannedList.length ? plannedList.length : 0})</h4>{plannedList}</div>
-                <div className="roadmap_list__inProgress"><h4>In Progress({inProgress.length ? inProgress.length : 0})</h4>{inProgressList}</div>
-                <div className="roadmap_list__live"><h4>Live({live.length ? live.length : 0})</h4>{liveList}</div>
+                {activeNav === "planned" &&
+                    <div className="roadmap_list__planned"><h4>Planned({plannedList.length ? plannedList.length : 0})</h4>{plannedList}</div>
+                }
+                {activeNav === "in-progress" &&
+                    <div className="roadmap_list__inProgress"><h4>In Progress({inProgress.length ? inProgress.length : 0})</h4>{inProgressList}</div>
+                }
+
+                {activeNav === "live" &&
+                    <div className="roadmap_list__live"><h4>Live({live.length ? live.length : 0})</h4>{liveList}</div>
+                }
+                
             </div>
         </div>
     )
