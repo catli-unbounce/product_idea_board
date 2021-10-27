@@ -78,7 +78,12 @@ ul {
 textarea {
     resize: none;
     border: none;
+
+    &::placeholder {
+        color: $grey-5;
+    }
 }
+
 button {
     @include button;
     font-family: inherit;

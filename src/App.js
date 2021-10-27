@@ -47,15 +47,25 @@ function App() {
     }
     fetchData();
   }, []);
+
+  const addNewRequest = (request) => {
+
+  }
+
+  const deleteRequest = (request_id) => {
+    
+  }
   return (
         <Switch>
           <Route path="/edit/:request_id">
-            <RequestDetails allRequests={data.all}></RequestDetails>
+            {data.all &&
+              <RequestDetails allRequests={data.all}></RequestDetails>
+            }
           </Route>
           <Route path="/new">
             <div className="back-link"><img alt="go back" src={backIcon}></img><a href="#" onClick={()=> history.goBack()}>Go Back</a></div>
             <div className="container">
-              <RequestForm></RequestForm>
+              <RequestForm addNewRequest={addNewRequest}></RequestForm>
             </div>
           </Route>
           <Route path="/roadmap">

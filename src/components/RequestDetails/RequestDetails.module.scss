@@ -2,4 +2,29 @@
     width: 60%;
     margin: 0 auto;
     margin-top: 5rem;
+
+    .new_comment_form {
+        @include card;
+
+        h3 {
+            color: $grey-3;
+        }
+
+        div {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        textarea {
+            width: 100%;
+        }
+
+        &__chars {
+            color: $grey-4;
+        }
+
+        button {
+            background-color: $fuschia;
+        }
+    }
 }
