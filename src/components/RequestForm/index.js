@@ -36,7 +36,7 @@ const RequestForm = () => {
             </label>
             <div className="form__btn-container">
                 <button className="cancel">Cancel</button>
-                            <button type="submit">Add Feedback</button>
+                <button type="submit">Add Feedback</button>
             </div>
             
         </form>

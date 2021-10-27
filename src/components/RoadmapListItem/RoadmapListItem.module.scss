@@ -23,6 +23,10 @@
             color: $white;
             background-color: $blue-1;
 
+            &:hover {
+                color: $grey-3;
+            }
+
             .upvote-icon {
                 path {
                     stroke: $white;

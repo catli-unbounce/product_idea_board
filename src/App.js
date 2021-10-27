@@ -11,15 +11,18 @@ import Banner from './components/Banner';
 import RequestsList from './components/RequestsList';
 import RequestForm from './components/RequestForm';
 import RoadmapList from './components/RoadmapList';
-
+import RequestDetails from './components/RequestDetails';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  useHistory
+  useHistory,
+  useRouteMatch,
+  useParams
 } from "react-router-dom";
 function App() {
   let history = useHistory();
+  let match = useRouteMatch();
   const [data, setData] = useState({
     'all': [],
     'currentUser': {},
@@ -28,7 +31,6 @@ function App() {
     'live': [],
     'inProgress':[]
   })
-
   useEffect(() => {
     
     async function fetchData() {
@@ -47,6 +49,9 @@ function App() {
   }, []);
   return (
         <Switch>
+          <Route path="/edit/:request_id">
+            <RequestDetails allRequests={data.all}></RequestDetails>
+          </Route>
           <Route path="/new">
             <div className="back-link"><img alt="go back" src={backIcon}></img><a href="#" onClick={()=> history.goBack()}>Go Back</a></div>
             <div className="container">

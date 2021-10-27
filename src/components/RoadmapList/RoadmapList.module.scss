@@ -14,6 +14,10 @@
         display: flex;
         flex-direction: column;
     }
+
+    &__mobile-nav {
+        display: none;
+    }
 }
 @media only screen and (max-width: $tablet) {   
     .roadmap_list {
@@ -31,6 +35,7 @@
             justify-content: space-between;
             border-bottom: solid rgba(140, 146, 179, .4) 1px;
             margin-bottom: 2rem;
+            
             h4 {
                 padding-bottom: 2rem;
                 text-align: center;
