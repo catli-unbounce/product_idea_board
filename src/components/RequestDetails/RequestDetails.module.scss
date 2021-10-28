@@ -6,8 +6,9 @@
     .new_comment_form {
         @include card;
 
-        h3 {
+        &__title {
             color: $grey-3;
+            margin-bottom: 2rem;
         }
 
         div {
@@ -17,6 +18,7 @@
 
         textarea {
             width: 100%;
+            margin-bottom: 2rem;
         }
 
         &__chars {
