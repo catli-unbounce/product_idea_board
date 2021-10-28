@@ -57,7 +57,7 @@ function App() {
   }
   return (
         <Switch>
-          <Route path="/edit/:request_id">
+          <Route path="/requests/:request_id">
             {data.all &&
               <RequestDetails allRequests={data.all}></RequestDetails>
             }

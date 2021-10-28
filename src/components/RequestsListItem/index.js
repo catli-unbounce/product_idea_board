@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import commentsIcon from '../../assets/shared/icon-comments.svg';
 import upIcon from '../../assets/shared/icon-arrow-up.svg';
+import {Link} from "react-router-dom";
 const RequestsListItem = ({productRequest}) => {
     const [active, setActive] = useState(false);
 
@@ -15,7 +16,7 @@ const RequestsListItem = ({productRequest}) => {
                 <p>{productRequest.upvotes}</p>
             </div>
             <div className="request__info">
-                <h3 className="request__title">{productRequest.title}</h3>
+                <h3 className="request__title"><Link to={`/requests/${productRequest.id}`}>{productRequest.title}</Link></h3>
                 <p className="request__description">{productRequest.description}</p>
                 <p className="request__category">{productRequest.category}</p>
             </div>

@@ -16,7 +16,7 @@ const CommentsList = ({comments}) => {
                             <p>@{comment.user.username}</p>
                         </div>
                             
-                        <p>Reply</p>
+                        <p className="comments_list__reply"><a href="#">Reply</a></p>
                        
                     </div>
                     

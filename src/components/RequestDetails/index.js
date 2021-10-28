@@ -1,19 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import RequestsListItem from '../RequestsListItem';
 import CommentsList from '../CommentsList';
-import {
-    useParams
-  } from "react-router-dom";
+import {useParams, useHistory} from "react-router-dom";
+import backIcon from '../../assets/shared/icon-arrow-left.svg';
 const RequestDetails = ({allRequests}) => {
     
     let params  = useParams();
     let requestId = parseInt(params.request_id);
     let request = allRequests.filter((item) => item.id === requestId)[0];
-    // console.log(request)
+    const history = useHistory()
     return (
         <div className="request_details">
             {request &&
                 <>
+                <div className="request_details__nav">
+                    <div>
+                        <img alt="back" src={backIcon}></img><a href="#" onClick={() => history.goBack()}>Go Back</a>
+                    </div>
+                    <button className="request_details__edit-btn">Edit Feedback</button>
+                </div>
                 <RequestsListItem
                     productRequest={request}
                 ></RequestsListItem>

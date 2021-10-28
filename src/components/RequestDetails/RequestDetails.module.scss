@@ -3,6 +3,17 @@
     margin: 0 auto;
     margin-top: 5rem;
 
+    &__edit-btn {
+        background-color: $blue-1;
+    }
+
+
+    &__nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
     .new_comment_form {
         @include card;
 
@@ -23,6 +34,7 @@
 
         &__chars {
             color: $grey-4;
+            font-size: 1.2rem;
         }
 
         button {
