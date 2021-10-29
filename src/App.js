@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import suggestionIcon from './assets/suggestions/icon-suggestions.svg'
-import {filterRequestsByStatus} from './helpers.js';
+import {filterRequestsByStatus, sortRequests} from './helpers.js';
 import backIcon from './assets/shared/icon-arrow-left.svg';
 import './App.scss';
 import ListFilter from './components/ListFilter';
@@ -26,7 +26,7 @@ function App() {
   const [data, setData] = useState({
     'all': [],
     'currentUser': {},
-    'banner': [],
+    'suggestions': [],
     'planned': [],
     'live': [],
     'inProgress':[]
@@ -39,7 +39,7 @@ function App() {
       setData({
         all: fetchedData.productRequests,
         currentUser: fetchedData.currentUser,
-        banner: filterRequestsByStatus(fetchedData.productRequests, 'suggestion'),
+        suggestions: filterRequestsByStatus(fetchedData.productRequests, 'suggestion'),
         planned: filterRequestsByStatus(fetchedData.productRequests, 'planned'),
         live: filterRequestsByStatus(fetchedData.productRequests, 'live'),
         inProgress: filterRequestsByStatus(fetchedData.productRequests, 'in-progress')
@@ -55,6 +55,14 @@ function App() {
   const deleteRequest = (request_id) => {
     
   }
+
+  const sortSuggestions = (order) => {
+    setData({
+      ...data,
+      suggestions: sortRequests(data.suggestions, order)
+    })
+  }
+
   return (
         <Switch>
           <Route path="/requests/:request_id">
@@ -63,7 +71,7 @@ function App() {
             }
           </Route>
           <Route path="/new">
-            <div className="back-link"><img alt="go back" src={backIcon}></img><a href="#" onClick={()=> history.goBack()}>Go Back</a></div>
+            <div className="go-back request-form__nav"><img alt="go back" src={backIcon}></img><a href="#" onClick={()=> history.goBack()}>Go Back</a></div>
             <div className="container">
               <RequestForm addNewRequest={addNewRequest}></RequestForm>
             </div>
@@ -92,13 +100,13 @@ function App() {
                   <img src={suggestionIcon} alt="banner icon"></img> Suggestions
                   <span className="sort-by">Sort By:</span>
                   <ul className="banner__sort-dropdown dropdown">
-                      <li className="select-input">Most Upvotes</li>
-                      <li className="select-input">Least Upvotes</li>
-                      <li className="select-input">Most Comments</li>
-                      <li className="select-input">Least Comments</li>
+                      <li onClick={() => sortSuggestions('votes_asc')} className="select-input">Most Upvotes</li>
+                      <li onClick={() => sortSuggestions('votes_desc')} className="select-input">Least Upvotes</li>
+                      <li onClick={() => sortSuggestions('comments_asc')} className="select-input">Most Comments</li>
+                      <li onClick={() => sortSuggestions('comments_desc')} className="select-input">Least Comments</li>
                   </ul>
                 </Banner>
-                <RequestsList productRequests={data.banner}></RequestsList>
+                <RequestsList productRequests={data.suggestions}></RequestsList>
               </main>
             </div>
           </Route>

@@ -1,0 +1,14 @@
+.respond-to-comment {
+
+    margin-top: 2rem;
+
+    textarea {
+        width: 100%;
+    }
+
+    &__submit {
+        background-color: $fuschia;
+        float: right;
+        margin-top: 1rem;
+    }
+}

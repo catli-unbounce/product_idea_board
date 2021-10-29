@@ -10,6 +10,8 @@
 @import './components/RequestForm/RequestForm.module.scss';
 @import './components/RequestDetails/RequestDetails.module.scss';
 @import './components/CommentsList/CommentsList.module.scss';
+@import './components/CommentsListItem/CommentsListItem.module.scss';
+
 body {
   background-color: $background-grey;
 }

@@ -106,6 +106,17 @@ textarea:focus, input:focus, select:focus{
     }
 }
 
+.go-back {
+    
+    a {
+        font-size: 1.2rem;
+        font-weight: 800;
+        color: $grey-4;
+    }
+    img {
+        margin-right: 1rem;
+    }
+}
 .inactive {
     opacity: .4;
 }

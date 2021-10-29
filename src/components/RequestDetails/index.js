@@ -14,7 +14,7 @@ const RequestDetails = ({allRequests}) => {
             {request &&
                 <>
                 <div className="request_details__nav">
-                    <div>
+                    <div className="go-back">
                         <img alt="back" src={backIcon}></img><a href="#" onClick={() => history.goBack()}>Go Back</a>
                     </div>
                     <button className="request_details__edit-btn">Edit Feedback</button>
@@ -22,7 +22,10 @@ const RequestDetails = ({allRequests}) => {
                 <RequestsListItem
                     productRequest={request}
                 ></RequestsListItem>
-                <CommentsList comments={request.comments}></CommentsList>
+                {request.comments &&
+                    <CommentsList comments={request.comments}></CommentsList>
+                }
+                
                 </>
             }
             
