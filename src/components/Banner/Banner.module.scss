@@ -23,13 +23,24 @@
             opacity: .8;
             margin-left: 2rem;
             font-size: 1.2rem;
+            cursor: pointer;
         }
     }
 
     &__sort-dropdown {
         position: absolute;
-        right: -11rem;
-        top: 6rem;
+        right: -4rem;
+        top: 4rem;
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            img {
+                margin-right: 0;
+            }
+        }
     }
 
     &__add-btn {

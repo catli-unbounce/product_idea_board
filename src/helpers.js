@@ -25,7 +25,13 @@ export function useWindowDimensions() {
 }
 
 export const filterRequestsByStatus = (productRequests, requestStatus) => {
-    return productRequests.filter((item) => item.status === requestStatus);
+  return productRequests.filter((item) => item.status === requestStatus);
+}
+
+export const filterRequestsByCategory = (requestItems, categories) => {
+  if(categories.length === 0) return requestItems;
+  console.log('categories', categories)
+  return requestItems.filter((item) => categories.includes(item.category));
 }
 
 export const sortRequests = (requestItems, order) => {

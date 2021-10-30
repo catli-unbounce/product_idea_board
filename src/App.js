@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import suggestionIcon from './assets/suggestions/icon-suggestions.svg'
-import {filterRequestsByStatus, sortRequests} from './helpers.js';
+import {filterRequestsByStatus, sortRequests, filterRequestsByCategory} from './helpers.js';
 import backIcon from './assets/shared/icon-arrow-left.svg';
+import checkmarkIcon from './assets/shared/icon-check.svg';
 import './App.scss';
 import ListFilter from './components/ListFilter';
 import Roadmap from './components/Roadmap';
@@ -29,8 +30,21 @@ function App() {
     'suggestions': [],
     'planned': [],
     'live': [],
-    'inProgress':[]
+    'inProgress':[],
+    'filteredSuggestions': []
   })
+
+  const [sortOrder, setSortOrder] = useState('votes_desc');
+  const [filters, setFilters] = useState(['all']);
+  const [showMenu, setShowMenu] = useState(false);
+  const sortOrders = {
+    'votes_asc': "Most Upvotes",
+    'votes_desc': "Least Upvotes",
+    'comments_asc': "Most Comments",
+    'comments_desc': "Least Comments"
+  }
+
+ 
   useEffect(() => {
     
     async function fetchData() {
@@ -42,7 +56,8 @@ function App() {
         suggestions: filterRequestsByStatus(fetchedData.productRequests, 'suggestion'),
         planned: filterRequestsByStatus(fetchedData.productRequests, 'planned'),
         live: filterRequestsByStatus(fetchedData.productRequests, 'live'),
-        inProgress: filterRequestsByStatus(fetchedData.productRequests, 'in-progress')
+        inProgress: filterRequestsByStatus(fetchedData.productRequests, 'in-progress'),
+        filteredSuggestions: fetchedData.productRequests
       });
     }
     fetchData();
@@ -60,7 +75,21 @@ function App() {
     setData({
       ...data,
       suggestions: sortRequests(data.suggestions, order)
-    })
+    });
+    setSortOrder(order)
+  }
+
+  const filterRequests = (filter) => {
+    let activeFilters = [...filters];
+    if(activeFilters.includes(filter)) {
+      activeFilters = activeFilters.filter((item) => item !== filter)
+    } else {
+      activeFilters.push(filter)
+    }
+    let filteredSuggestions = filterRequestsByCategory(data.suggestions, activeFilters);
+    console.log('filtered requests', filteredSuggestions)
+    setData({...data, filteredSuggestions: filteredSuggestions})
+    setFilters(activeFilters);
   }
 
   return (
@@ -87,26 +116,29 @@ function App() {
             <div className="container">
               <div className="controls">
                 <Header></Header>
-                <ListFilter></ListFilter>
+                <ListFilter filters={filters} filterRequests={filterRequests}></ListFilter>
                 <Roadmap planned={data.planned} inProgress={data.inProgress} live={data.live}></Roadmap>
               </div>
 
               <div className="controls-mobile">
-                <ListFilter></ListFilter>
+                <ListFilter filters={filters} filterRequests={filterRequests}></ListFilter>
                 <Roadmap planned={data.planned} inProgress={data.inProgress} live={data.live}></Roadmap>
               </div>
               <main>      
                 <Banner>
                   <img src={suggestionIcon} alt="banner icon"></img> Suggestions
-                  <span className="sort-by">Sort By:</span>
-                  <ul className="banner__sort-dropdown dropdown">
-                      <li onClick={() => sortSuggestions('votes_asc')} className="select-input">Most Upvotes</li>
-                      <li onClick={() => sortSuggestions('votes_desc')} className="select-input">Least Upvotes</li>
-                      <li onClick={() => sortSuggestions('comments_asc')} className="select-input">Most Comments</li>
-                      <li onClick={() => sortSuggestions('comments_desc')} className="select-input">Least Comments</li>
-                  </ul>
+                  <span onClick={() => setShowMenu(!showMenu)} className="sort-by">Sort By: {sortOrders[sortOrder]}</span>
+                  {showMenu &&
+                    <ul className="banner__sort-dropdown dropdown">
+                        <li onClick={() => sortSuggestions('votes_asc')} className="select-input">Most Upvotes<img alt="checkmark" src={checkmarkIcon}></img></li>
+                        <li onClick={() => sortSuggestions('votes_desc')} className="select-input">Least Upvotes<img alt="checkmark" src={checkmarkIcon}></img></li>
+                        <li onClick={() => sortSuggestions('comments_asc')} className="select-input">Most Comments<img alt="checkmark" src={checkmarkIcon}></img></li>
+                        <li onClick={() => sortSuggestions('comments_desc')} className="select-input">Least Comments<img alt="checkmark" src={checkmarkIcon}></img></li>
+                    </ul>
+                  }
+                  
                 </Banner>
-                <RequestsList productRequests={data.suggestions}></RequestsList>
+                <RequestsList productRequests={data.filteredSuggestions}></RequestsList>
               </main>
             </div>
           </Route>
