@@ -80,14 +80,20 @@ function App() {
   }
 
   const filterRequests = (filter) => {
+
     let activeFilters = [...filters];
     if(activeFilters.includes(filter)) {
       activeFilters = activeFilters.filter((item) => item !== filter)
     } else {
       activeFilters.push(filter)
     }
-    let filteredSuggestions = filterRequestsByCategory(data.suggestions, activeFilters);
-    console.log('filtered requests', filteredSuggestions)
+    let filteredSuggestions = [];
+    if(activeFilters.includes('all')) {
+      filteredSuggestions= [...data.suggestions];
+    } else {
+      filteredSuggestions = filterRequestsByCategory(data.suggestions, activeFilters);
+    }
+    
     setData({...data, filteredSuggestions: filteredSuggestions})
     setFilters(activeFilters);
   }
