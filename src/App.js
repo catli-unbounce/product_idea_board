@@ -38,8 +38,6 @@ function App() {
   const [sortOrder, setSortOrder] = useState('votes_desc');
   const [filters, setFilters] = useState(['all']);
   const [showMenu, setShowMenu] = useState(false);
-
-
  
   useEffect(() => {
     
@@ -70,7 +68,7 @@ function App() {
   const sortSuggestions = (order) => {
     setData({
       ...data,
-      suggestions: sortRequests(data.suggestions, order)
+      filteredSuggestions: sortRequests(data.suggestions, order)
     });
     setSortOrder(order)
   }
@@ -108,6 +106,9 @@ function App() {
       
     })
   }
+
+  const sortOrderDisplay = sortOrders.filter((item) => item.key === sortOrder)[0].title;
+
   return (
         <Switch>
           <Route path="/requests/:request_id">
@@ -143,14 +144,10 @@ function App() {
               <main>      
                 <Banner>
                   <img src={suggestionIcon} alt="banner icon"></img> Suggestions
-                  <span onClick={() => setShowMenu(!showMenu)} className="sort-by">Sort By: <span className="sort-order">{sortOrders[sortOrder]}</span></span>
+                  <span onClick={() => setShowMenu(!showMenu)} className="sort-by">Sort By: <span className="sort-order">{sortOrderDisplay}</span></span>
                   {showMenu &&
                     <ul className="banner__sort-dropdown dropdown">
                       {sortMenu()}
-                        {/* <li onClick={() => sortSuggestions('votes_asc')} className="select-input">Most Upvotes{sortOrder === 'votes_asc' && `<img alt="checkmark" src={checkmarkIcon}></img>`}></img></li>
-                        <li onClick={() => sortSuggestions('votes_desc')} className="select-input">Least Upvotes<img alt="checkmark" src={checkmarkIcon}></img></li>
-                        <li onClick={() => sortSuggestions('comments_asc')} className="select-input">Most Comments<img alt="checkmark" src={checkmarkIcon}></img></li>
-                        <li onClick={() => sortSuggestions('comments_desc')} className="select-input">Least Comments<img alt="checkmark" src={checkmarkIcon}></img></li> */}
                     </ul>
                   }
                   

@@ -39,8 +39,13 @@
         margin-top: -57px;
     }
 
+    &__category {
+        position: relative;
+    }
+
     &__select-category {
         width: 100%;
+        position: absolute;
 
         li {
             display: flex;

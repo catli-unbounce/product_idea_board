@@ -4,7 +4,21 @@ import arrowDownIcon from '../../assets/shared/icon-arrow-down.svg';
 import checkIcon from '../../assets/shared/icon-check.svg';
 import { useHistory } from "react-router-dom";
 const RequestForm = ({addNewRequest}) => {
-    let history = useHistory();
+    
+    const [showDropdown, setShowDropdown] = useState(false);
+    const [newRequest, setNewRequest] = useState({
+        category: 'feature',
+        title: ''
+    })
+
+    const updateNewRequest = (key, value) => {
+        const formData = {...newRequest};
+        formData[key] = value;
+
+        setNewRequest(formData);
+    }
+
+
     return (
         <form className="form">
             <img className="new-icon" src={newFeedbackIcon}></img>
@@ -12,31 +26,32 @@ const RequestForm = ({addNewRequest}) => {
             <label>
                 <h5 className="label">Feedback Title</h5>
                 <p className="label-desc">Add a short, descriptive headline</p>
-                <input className="text-input" name="name" />
+                <input onChange={(e) => updateNewRequest('title', e.target.value)} className="text-input" name="name" value={newRequest.title}/>
             </label>
 
-            <label>
+            <label className="form__category">
                 <h5 className="label">Category</h5>
                 <p className="label-desc">Choose a category for your feedback</p>
-                <li className="text-input first-option" value="feature">Feature<img src={arrowDownIcon}></img></li>
-                <ul className="dropdown form__select-category">
-                    <li className="select-input" value="ui">Feature<img className="check-icon" src={checkIcon}></img></li>
-                    <li className="select-input" value="ui">UI</li>
-                    <li className="select-input" value="ux">UX</li>
-                    <li className="select-input" value="enhancement">Enhancement</li>
-                    <li className="select-input" value="bug">Bug</li>
-                </ul>
-
+                <li onClick={() => setShowDropdown(!showDropdown)} className="text-input first-option" value="feature">Feature<img src={arrowDownIcon}></img></li>
+                {showDropdown &&
+                    <ul className="dropdown form__select-category">
+                        <li onClick={() => updateNewRequest('category', 'feature')} className="select-input" value="feature">Feature{newRequest.category === 'feature' && <img className="check-icon" src={checkIcon}></img>}</li>
+                        <li onClick={() => updateNewRequest('category', 'ui')} className="select-input" value="ui">UI{newRequest.category === 'ui' && <img className="check-icon" src={checkIcon}></img>}</li>
+                        <li onClick={() => updateNewRequest('category', 'ux')} className="select-input" value="ux">UX{newRequest.category === 'ux' && <img className="check-icon" src={checkIcon}></img>}</li>
+                        <li onClick={() => updateNewRequest('category', 'enhancement')} className="select-input" value="enhancement">Enhancement{newRequest.category === 'enhancement' && <img className="check-icon" src={checkIcon}></img>}</li>
+                        <li onClick={() => updateNewRequest('category','bug')} className="select-input" value="bug">Bug{newRequest.category === 'bug' && <img className="check-icon" src={checkIcon}></img>}</li>
+                    </ul>
+                }
             </label>
 
             <label>
                 <h5 className="label">Feedback Detail</h5>
                 <p className="label-desc">Include any specific comments on what should be improved, added, etc.</p>
-                <textarea className="text-input" name="name" />
+                <textarea onChange={(e) => updateNewRequest('description',e.target.value)} className="text-input" name="name" value={newRequest.description}/>
             </label>
             <div className="form__btn-container">
                 <button className="cancel">Cancel</button>
-                <button type="submit">Add Feedback</button>
+                <button onClick={addNewRequest} type="submit">Add Feedback</button>
             </div>
             
         </form>

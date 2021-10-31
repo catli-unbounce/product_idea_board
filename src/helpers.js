@@ -35,7 +35,7 @@ export const filterRequestsByCategory = (requestItems, categories) => {
 }
 
 export const sortRequests = (requestItems, order) => {
-
+  
   switch(order) {
     case 'votes_asc':
       return requestItems.sort((a, b) => b.upvotes - a.upvotes);  
