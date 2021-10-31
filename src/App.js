@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import suggestionIcon from './assets/suggestions/icon-suggestions.svg'
 import {filterRequestsByStatus, sortRequests, filterRequestsByCategory} from './helpers.js';
+import {sortOrders} from './static.js';
 import backIcon from './assets/shared/icon-arrow-left.svg';
 import checkmarkIcon from './assets/shared/icon-check.svg';
 import './App.scss';
@@ -37,12 +38,7 @@ function App() {
   const [sortOrder, setSortOrder] = useState('votes_desc');
   const [filters, setFilters] = useState(['all']);
   const [showMenu, setShowMenu] = useState(false);
-  const sortOrders = {
-    'votes_asc': "Most Upvotes",
-    'votes_desc': "Least Upvotes",
-    'comments_asc': "Most Comments",
-    'comments_desc': "Least Comments"
-  }
+
 
  
   useEffect(() => {
@@ -57,7 +53,7 @@ function App() {
         planned: filterRequestsByStatus(fetchedData.productRequests, 'planned'),
         live: filterRequestsByStatus(fetchedData.productRequests, 'live'),
         inProgress: filterRequestsByStatus(fetchedData.productRequests, 'in-progress'),
-        filteredSuggestions: fetchedData.productRequests
+        filteredSuggestions: filterRequestsByStatus(fetchedData.productRequests, 'suggestion'),
       });
     }
     fetchData();
@@ -97,7 +93,21 @@ function App() {
     setData({...data, filteredSuggestions: filteredSuggestions})
     setFilters(activeFilters);
   }
+  const sortMenu = () => {
+    return sortOrders.map((item) => {
 
+      if(sortOrder === item.key) {
+        return (
+          <li onClick={() => sortSuggestions(item.key)} className="select-input">{item.title}<img alt="checkmark" src={checkmarkIcon}></img></li>
+        )
+      } else {
+        return (
+          <li onClick={() => sortSuggestions(item.key)} className="select-input">{item.title}</li>
+        )
+      }
+      
+    })
+  }
   return (
         <Switch>
           <Route path="/requests/:request_id">
@@ -133,13 +143,14 @@ function App() {
               <main>      
                 <Banner>
                   <img src={suggestionIcon} alt="banner icon"></img> Suggestions
-                  <span onClick={() => setShowMenu(!showMenu)} className="sort-by">Sort By: {sortOrders[sortOrder]}</span>
+                  <span onClick={() => setShowMenu(!showMenu)} className="sort-by">Sort By: <span className="sort-order">{sortOrders[sortOrder]}</span></span>
                   {showMenu &&
                     <ul className="banner__sort-dropdown dropdown">
-                        <li onClick={() => sortSuggestions('votes_asc')} className="select-input">Most Upvotes<img alt="checkmark" src={checkmarkIcon}></img></li>
+                      {sortMenu()}
+                        {/* <li onClick={() => sortSuggestions('votes_asc')} className="select-input">Most Upvotes{sortOrder === 'votes_asc' && `<img alt="checkmark" src={checkmarkIcon}></img>`}></img></li>
                         <li onClick={() => sortSuggestions('votes_desc')} className="select-input">Least Upvotes<img alt="checkmark" src={checkmarkIcon}></img></li>
                         <li onClick={() => sortSuggestions('comments_asc')} className="select-input">Most Comments<img alt="checkmark" src={checkmarkIcon}></img></li>
-                        <li onClick={() => sortSuggestions('comments_desc')} className="select-input">Least Comments<img alt="checkmark" src={checkmarkIcon}></img></li>
+                        <li onClick={() => sortSuggestions('comments_desc')} className="select-input">Least Comments<img alt="checkmark" src={checkmarkIcon}></img></li> */}
                     </ul>
                   }
                   

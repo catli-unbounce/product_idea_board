@@ -24,6 +24,11 @@
             margin-left: 2rem;
             font-size: 1.2rem;
             cursor: pointer;
+
+            .sort-order {
+                color: $grey-1;
+                font-weight: 800;
+            }
         }
     }
 
