@@ -32,7 +32,6 @@ function App() {
     'planned': [],
     'live': [],
     'inProgress':[],
-    'filteredSuggestions': []
   })
 
   const [sortOrder, setSortOrder] = useState('votes_desc');
@@ -40,7 +39,6 @@ function App() {
   const [showMenu, setShowMenu] = useState(false);
  
   useEffect(() => {
-    
     async function fetchData() {
       const response = await fetch('/data.json');
       const fetchedData = await response.json(response);
@@ -51,14 +49,22 @@ function App() {
         planned: filterRequestsByStatus(fetchedData.productRequests, 'planned'),
         live: filterRequestsByStatus(fetchedData.productRequests, 'live'),
         inProgress: filterRequestsByStatus(fetchedData.productRequests, 'in-progress'),
-        filteredSuggestions: filterRequestsByStatus(fetchedData.productRequests, 'suggestion'),
       });
     }
     fetchData();
   }, []);
 
-  const addNewRequest = (request) => {
+  useEffect(() => { 
+    displaySuggestions();
+  }, [filters]);
 
+  const addNewRequest = (request) => {
+    const listOfRequests = [...data.suggestions];
+    listOfRequests.push(request);
+    setData({
+      ...data,
+      suggestions: listOfRequests
+    })
   }
 
   const deleteRequest = (request_id) => {
@@ -66,14 +72,10 @@ function App() {
   }
 
   const sortSuggestions = (order) => {
-    setData({
-      ...data,
-      filteredSuggestions: sortRequests(data.suggestions, order)
-    });
     setSortOrder(order)
   }
 
-  const filterRequests = (filter) => {
+  const updateFilters = (filter) => {
 
     let activeFilters = [...filters];
     if(activeFilters.includes(filter)) {
@@ -81,36 +83,41 @@ function App() {
     } else {
       activeFilters.push(filter)
     }
-    let filteredSuggestions = [];
-    if(activeFilters.includes('all')) {
-      filteredSuggestions= [...data.suggestions];
-    } else {
-      filteredSuggestions = filterRequestsByCategory(data.suggestions, activeFilters);
-    }
-    
-    setData({...data, filteredSuggestions: filteredSuggestions})
     setFilters(activeFilters);
   }
-  const sortMenu = () => {
-    return sortOrders.map((item) => {
 
-      if(sortOrder === item.key) {
-        return (
-          <li onClick={() => sortSuggestions(item.key)} className="select-input">{item.title}<img alt="checkmark" src={checkmarkIcon}></img></li>
-        )
-      } else {
-        return (
-          <li onClick={() => sortSuggestions(item.key)} className="select-input">{item.title}</li>
-        )
-      }
-      
+  const sortMenu = () => sortOrders.map((item) => {
+    if(sortOrder === item.key) {
+      return (
+        <li onClick={() => sortSuggestions(item.key)} className="select-input">{item.title}<img alt="checkmark" src={checkmarkIcon}></img></li>
+      )
+    } else {
+      return (
+        <li onClick={() => sortSuggestions(item.key)} className="select-input">{item.title}</li>
+      )
+    }
     })
+  
+  const displaySuggestions = () => {
+    let filteredSuggestions = [...data.suggestions];
+    if(!filters.includes('all')) {
+      filteredSuggestions = filterRequestsByCategory([...data.suggestions], filters);
+    }
+    return sortRequests(filteredSuggestions, sortOrder);
   }
 
+  const editRequest = () => {
+
+  }
   const sortOrderDisplay = sortOrders.filter((item) => item.key === sortOrder)[0].title;
 
   return (
         <Switch>
+          <Route path="/requests/:request_id/edit">
+            {data.all &&
+              <RequestForm addNewRequest={addNewRequest} allRequests={data.all} editRequest={editRequest}></RequestForm>
+            }
+          </Route>
           <Route path="/requests/:request_id">
             {data.all &&
               <RequestDetails allRequests={data.all}></RequestDetails>
@@ -133,12 +140,12 @@ function App() {
             <div className="container">
               <div className="controls">
                 <Header></Header>
-                <ListFilter filters={filters} filterRequests={filterRequests}></ListFilter>
+                <ListFilter filters={filters} filterRequests={updateFilters}></ListFilter>
                 <Roadmap planned={data.planned} inProgress={data.inProgress} live={data.live}></Roadmap>
               </div>
 
               <div className="controls-mobile">
-                <ListFilter filters={filters} filterRequests={filterRequests}></ListFilter>
+                <ListFilter filters={filters} filterRequests={updateFilters}></ListFilter>
                 <Roadmap planned={data.planned} inProgress={data.inProgress} live={data.live}></Roadmap>
               </div>
               <main>      
@@ -152,7 +159,7 @@ function App() {
                   }
                   
                 </Banner>
-                <RequestsList productRequests={data.filteredSuggestions}></RequestsList>
+                <RequestsList productRequests={displaySuggestions()}></RequestsList>
               </main>
             </div>
           </Route>

@@ -12,7 +12,7 @@ const RequestsListItem = ({productRequest}) => {
     return (
         <li className="request">
             <div className={active ? "request__votes request__votes--active" : "request__votes"} onClick={() => updateActive()}>
-            <svg className="upvote-icon" width="10" height="7" xmlns="http://www.w3.org/2000/svg"><path d="M1 6l4-4 4 4" stroke="#4661E6" stroke-width="2" fill="none" fill-rule="evenodd"/></svg>
+            <svg className="upvote-icon" width="10" height="7" xmlns="http://www.w3.org/2000/svg"><path d="M1 6l4-4 4 4" stroke="#4661E6" strokeWidth="2" fill="none" fillRule="evenodd"/></svg>
                 <p>{productRequest.upvotes}</p>
             </div>
             <div className="request__info">

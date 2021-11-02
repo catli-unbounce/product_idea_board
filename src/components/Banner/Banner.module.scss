@@ -49,12 +49,16 @@
     }
 
     &__add-btn {
-        margin-left: auto;
+        
         background-color: $fuschia;
         
         a {
             color: $grey-1;
         }
+    }
+
+    &__add-feedback-link {
+        margin-left: auto;
     }
 }
 

@@ -7,7 +7,7 @@ const Banner = ({children}) => {
             <div className="banner__info">
                 {children}
             </div>
-            <button className="banner__add-btn"><Link to="/new">+ Add Feedback</Link></button>
+            <Link className="banner__add-feedback-link" to="/new"><button className="banner__add-btn">+ Add Feedback</button></Link>
         </div>
     )
 }

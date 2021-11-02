@@ -3,8 +3,8 @@ import newFeedbackIcon from '../../assets/shared/icon-new-feedback.svg';
 import arrowDownIcon from '../../assets/shared/icon-arrow-down.svg';
 import checkIcon from '../../assets/shared/icon-check.svg';
 import { useHistory } from "react-router-dom";
-const RequestForm = ({addNewRequest}) => {
-    
+const RequestForm = ({addNewRequest, allRequests, editRequest}) => {
+    let history = useHistory();
     const [showDropdown, setShowDropdown] = useState(false);
     const [newRequest, setNewRequest] = useState({
         category: 'feature',
@@ -18,6 +18,11 @@ const RequestForm = ({addNewRequest}) => {
         setNewRequest(formData);
     }
 
+    const handleAddNewRequest = (e) => {
+        e.preventDefault();
+        addNewRequest(newRequest);
+        history.push('/')
+    }
 
     return (
         <form className="form">
@@ -51,7 +56,7 @@ const RequestForm = ({addNewRequest}) => {
             </label>
             <div className="form__btn-container">
                 <button className="cancel">Cancel</button>
-                <button onClick={addNewRequest} type="submit">Add Feedback</button>
+                <button onClick={(e) => handleAddNewRequest(e)} type="submit">Add Feedback</button>
             </div>
             
         </form>
