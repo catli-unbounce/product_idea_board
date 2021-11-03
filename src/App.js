@@ -14,6 +14,7 @@ import RequestsList from './components/RequestsList';
 import RequestForm from './components/RequestForm';
 import RoadmapList from './components/RoadmapList';
 import RequestDetails from './components/RequestDetails';
+import EditRequestForm from './components/EditRequestsForm';
 import {
   BrowserRouter as Router,
   Switch,
@@ -106,16 +107,44 @@ function App() {
     return sortRequests(filteredSuggestions, sortOrder);
   }
 
-  const editRequest = () => {
+  const editRequest = (requestItem) => {
+    const newSuggestionsList = data.all.map((item) => {
+      return item.id === requestItem.id ? requestItem : item;
+    });
 
+    setData({
+      ...data,
+      all: newSuggestionsList
+    })
   }
+
+  const upvote = (requestId, vote) => {
+    
+    const requestItem = data.all.filter((item) => item.id === requestId)[0];
+    requestItem.upvotes = requestItem.upvotes + vote;
+    const newSuggestionsList = data.all.map((item) => {
+      return item.id === requestId ? requestItem : item;
+    });
+
+    setData({
+      ...data,
+      all: newSuggestionsList
+    })
+  }
+
   const sortOrderDisplay = sortOrders.filter((item) => item.key === sortOrder)[0].title;
 
   return (
         <Switch>
           <Route path="/requests/:request_id/edit">
             {data.all &&
-              <RequestForm addNewRequest={addNewRequest} allRequests={data.all} editRequest={editRequest}></RequestForm>
+            <>
+              <div className="go-back request-form__nav"><img alt="go back" src={backIcon}></img><a href="#" onClick={()=> history.goBack()}>Go Back</a></div>
+              <div className="container">
+                <EditRequestForm allRequests={data.all} editRequest={editRequest}></EditRequestForm>
+              </div>
+            </>
+              
             }
           </Route>
           <Route path="/requests/:request_id">
@@ -141,7 +170,7 @@ function App() {
               <div className="controls">
                 <Header></Header>
                 <ListFilter filters={filters} filterRequests={updateFilters}></ListFilter>
-                <Roadmap planned={data.planned} inProgress={data.inProgress} live={data.live}></Roadmap>
+                <Roadmap planned={data.planned} inProgress={data.inProgress} live={data.live} upvote={upvote}></Roadmap>
               </div>
 
               <div className="controls-mobile">
@@ -159,7 +188,7 @@ function App() {
                   }
                   
                 </Banner>
-                <RequestsList productRequests={displaySuggestions()}></RequestsList>
+                <RequestsList productRequests={displaySuggestions()} upvote={upvote}></RequestsList>
               </main>
             </div>
           </Route>

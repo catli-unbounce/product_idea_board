@@ -178,3 +178,7 @@ textarea:focus, input:focus, select:focus{
 .text-input--error {
     outline: solid .5px $error-red;
 }
+
+.delete-btn {
+    background-color: $error-red;
+}

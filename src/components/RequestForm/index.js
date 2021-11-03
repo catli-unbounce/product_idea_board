@@ -3,8 +3,9 @@ import newFeedbackIcon from '../../assets/shared/icon-new-feedback.svg';
 import arrowDownIcon from '../../assets/shared/icon-arrow-down.svg';
 import checkIcon from '../../assets/shared/icon-check.svg';
 import { useHistory } from "react-router-dom";
-const RequestForm = ({addNewRequest, allRequests, editRequest}) => {
+const RequestForm = ({addNewRequest}) => {
     let history = useHistory();
+    
     const [showDropdown, setShowDropdown] = useState(false);
     const [newRequest, setNewRequest] = useState({
         category: 'feature',
