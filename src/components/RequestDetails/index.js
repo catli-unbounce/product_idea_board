@@ -3,7 +3,7 @@ import RequestsListItem from '../RequestsListItem';
 import CommentsList from '../CommentsList';
 import {useParams, useHistory} from "react-router-dom";
 import backIcon from '../../assets/shared/icon-arrow-left.svg';
-const RequestDetails = ({allRequests}) => {
+const RequestDetails = ({allRequests, upvote}) => {
     
     let params  = useParams();
     let requestId = parseInt(params.request_id);
@@ -21,6 +21,7 @@ const RequestDetails = ({allRequests}) => {
                 </div>
                 <RequestsListItem
                     productRequest={request}
+                    upvote={upvote}
                 ></RequestsListItem>
                 {request.comments &&
                     <CommentsList comments={request.comments}></CommentsList>

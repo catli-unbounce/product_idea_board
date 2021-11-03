@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Banner from '../Banner';
 import RoadmapListItem from '../RoadmapListItem';
 import {useWindowDimensions} from '../../helpers.js'
-const RoadmapList = ({planned, inProgress, live}) => {
+const RoadmapList = ({planned, inProgress, live, upvote}) => {
 
     const [activeNav, setActiveNav] = useState(['planned']);
     const { height, width } = useWindowDimensions(); 
@@ -20,7 +20,7 @@ const RoadmapList = ({planned, inProgress, live}) => {
 
     const plannedList = planned.map((item, index) => {
         return (
-            <RoadmapListItem key={index} {...item}></RoadmapListItem>
+            <RoadmapListItem key={index} {...item} upvote={upvote}></RoadmapListItem>
         )
     })
 

@@ -149,7 +149,7 @@ function App() {
           </Route>
           <Route path="/requests/:request_id">
             {data.all &&
-              <RequestDetails allRequests={data.all}></RequestDetails>
+              <RequestDetails upvote={upvote} allRequests={data.all}></RequestDetails>
             }
           </Route>
           <Route path="/new">
@@ -163,6 +163,7 @@ function App() {
               planned={data.planned} 
               inProgress={data.inProgress} 
               live={data.live}
+              upvote={upvote}
             ></RoadmapList>
           </Route>
           <Route path="/">

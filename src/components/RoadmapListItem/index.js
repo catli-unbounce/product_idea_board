@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import commentsIcon from '../../assets/shared/icon-comments.svg';
-const RoadmapListItem = ({title, category, upvotes, status, id, description, comments}) => {
+const RoadmapListItem = ({title, category, upvotes, status, id, description, comments, upvote}) => {
     const [active, setActive] = useState(false);
 
     const updateActive = () => {
         const isActive = !active;
         setActive(isActive);
+        if(isActive) {
+            upvote(id, 1)
+        } else {
+            upvote(id, -1)
+        }
     }
 
     var cardClass = classNames({
