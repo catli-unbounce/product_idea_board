@@ -9,14 +9,23 @@ const RequestForm = ({addNewRequest}) => {
     const [showDropdown, setShowDropdown] = useState(false);
     const [newRequest, setNewRequest] = useState({
         category: 'feature',
-        title: ''
+        title: '',
+        upvotes: 0,
+        status: 'suggestion',
+        description: '',
+        comments: [],
+        id: Math.floor(Math.random() * 10000)
     })
 
     const updateNewRequest = (key, value) => {
         const formData = {...newRequest};
         formData[key] = value;
+        setNewRequest(formData)
+    }
 
-        setNewRequest(formData);
+    const handleSelect = (value) => {
+        updateNewRequest('category', value);
+        setShowDropdown(!showDropdown)
     }
 
     const handleAddNewRequest = (e) => {
@@ -38,14 +47,14 @@ const RequestForm = ({addNewRequest}) => {
             <label className="form__category">
                 <h5 className="label">Category</h5>
                 <p className="label-desc">Choose a category for your feedback</p>
-                <li onClick={() => setShowDropdown(!showDropdown)} className="text-input first-option" value="feature">Feature<img src={arrowDownIcon}></img></li>
+                <li onClick={() => setShowDropdown(!showDropdown)} className="text-input first-option" value={newRequest.category}>{newRequest.category}<img src={arrowDownIcon}></img></li>
                 {showDropdown &&
                     <ul className="dropdown form__select-category">
-                        <li onClick={() => updateNewRequest('category', 'feature')} className="select-input" value="feature">Feature{newRequest.category === 'feature' && <img className="check-icon" src={checkIcon}></img>}</li>
-                        <li onClick={() => updateNewRequest('category', 'ui')} className="select-input" value="ui">UI{newRequest.category === 'ui' && <img className="check-icon" src={checkIcon}></img>}</li>
-                        <li onClick={() => updateNewRequest('category', 'ux')} className="select-input" value="ux">UX{newRequest.category === 'ux' && <img className="check-icon" src={checkIcon}></img>}</li>
-                        <li onClick={() => updateNewRequest('category', 'enhancement')} className="select-input" value="enhancement">Enhancement{newRequest.category === 'enhancement' && <img className="check-icon" src={checkIcon}></img>}</li>
-                        <li onClick={() => updateNewRequest('category','bug')} className="select-input" value="bug">Bug{newRequest.category === 'bug' && <img className="check-icon" src={checkIcon}></img>}</li>
+                        <li onClick={() => handleSelect('feature')} className="select-input" value="feature">Feature{newRequest.category === 'feature' && <img className="check-icon" src={checkIcon}></img>}</li>
+                        <li onClick={() => handleSelect('ui')} className="select-input" value="ui">UI{newRequest.category === 'ui' && <img className="check-icon" src={checkIcon}></img>}</li>
+                        <li onClick={() => handleSelect('ux')} className="select-input" value="ux">UX{newRequest.category === 'ux' && <img className="check-icon" src={checkIcon}></img>}</li>
+                        <li onClick={() => handleSelect('enhancement')} className="select-input" value="enhancement">Enhancement{newRequest.category === 'enhancement' && <img className="check-icon" src={checkIcon}></img>}</li>
+                        <li onClick={() => handleSelect('bug')} className="select-input" value="bug">Bug{newRequest.category === 'bug' && <img className="check-icon" src={checkIcon}></img>}</li>
                     </ul>
                 }
             </label>

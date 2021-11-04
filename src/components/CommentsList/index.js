@@ -12,9 +12,13 @@ const CommentsList = ({comments}) => {
         )
     })
     return (
-        <div className="comments_list">
-            {commentsList}
-        </div>
+        commentsList.length > 0 ?
+            <div className="comments_list">
+                {commentsList}
+            </div> :
+            <div></div>
+        
+        
     )
 }
 

@@ -9,16 +9,18 @@ const EditRequestForm = ({allRequests, editRequest}) => {
     const [showDropdown, setShowDropdown] = useState(false);
     const [newRequest, setNewRequest] = useState({
         category: 'feature',
-        title: ''
+        title: '',
+        
     })
    
     useEffect(() => {
         
         let requestId = 6;
-        
+        setShowDropdown(!showDropdown)
         let requestItem = allRequests.filter((item) => item.id === requestId)[0]; console.log('request item', requestItem)
         setNewRequest(requestItem);
     }, []);
+
     const updateRequest = (key, value) => {
         const formData = {...newRequest};
         formData[key] = value;

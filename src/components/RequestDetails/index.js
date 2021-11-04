@@ -14,6 +14,7 @@ const RequestDetails = ({allRequests, upvote, addComment}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         addComment(request, newComment);
+        setNewComment('')
     }
     return (
         <div className="request_details">

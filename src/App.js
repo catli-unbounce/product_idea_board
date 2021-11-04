@@ -64,11 +64,11 @@ function App() {
   }, [data.all]);
 
   const addNewRequest = (request) => {
-    const listOfRequests = [...data.suggestions];
+    const listOfRequests = [...data.all];
     listOfRequests.push(request);
     setData({
       ...data,
-      suggestions: listOfRequests
+      all: listOfRequests
     })
   }
 
@@ -147,7 +147,7 @@ function App() {
         username: "code_monkey"
       }
     }
-    const commentsList = [...requestItem.comments]
+    const commentsList = requestItem.comments? [...requestItem.comments] : [];
     commentsList.push(commentObject);
     const newRequestItem = {
       ...requestItem,
