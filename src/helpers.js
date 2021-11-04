@@ -30,7 +30,6 @@ export const filterRequestsByStatus = (productRequests, requestStatus) => {
 
 export const filterRequestsByCategory = (requestItems, categories) => {
   if(categories.length === 0) return requestItems;
-  console.log('categories', categories)
   return requestItems.filter((item) => categories.includes(item.category));
 }
 
@@ -56,7 +55,6 @@ export const sortRequests = (requestItems, order) => {
       });  
     default:
       return requestItems;
-      break;
   }
   
 }

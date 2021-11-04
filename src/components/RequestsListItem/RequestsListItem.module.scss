@@ -31,6 +31,10 @@
                 stroke: $white;
             }
         }
+
+        &:active {
+            color: $grey-4;
+        }
     }
 
     &__info {

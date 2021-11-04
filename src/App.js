@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
 import suggestionIcon from './assets/suggestions/icon-suggestions.svg'
 import {filterRequestsByStatus, sortRequests, filterRequestsByCategory} from './helpers.js';
 import {sortOrders} from './static.js';
@@ -16,16 +15,13 @@ import RoadmapList from './components/RoadmapList';
 import RequestDetails from './components/RequestDetails';
 import EditRequestForm from './components/EditRequestsForm';
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
   useHistory,
   useRouteMatch,
-  useParams
 } from "react-router-dom";
 function App() {
   let history = useHistory();
-  let match = useRouteMatch();
   const [data, setData] = useState({
     'all': [],
     'currentUser': {},
@@ -59,6 +55,14 @@ function App() {
     displaySuggestions();
   }, [filters]);
 
+  useEffect(() => { 
+    const suggestionsList = filterRequestsByStatus(data.all, 'suggestion');
+    setData({
+      ...data,
+      suggestions: suggestionsList
+    })
+  }, [data.all]);
+
   const addNewRequest = (request) => {
     const listOfRequests = [...data.suggestions];
     listOfRequests.push(request);
@@ -68,9 +72,10 @@ function App() {
     })
   }
 
-  const deleteRequest = (request_id) => {
+
+  // const deleteRequest = (request_id) => {
     
-  }
+  // }
 
   const sortSuggestions = (order) => {
     setSortOrder(order)
@@ -132,6 +137,33 @@ function App() {
     })
   }
 
+  const addComment = (requestItem, comment) => {
+    const commentObject = {
+      content: comment,
+      id: Math.floor(Math.random() * 10000),
+      user: {
+        image: './assets/user-images/image-suzanne.jpg',
+        name: "Catherine Li",
+        username: "code_monkey"
+      }
+    }
+    const commentsList = [...requestItem.comments]
+    commentsList.push(commentObject);
+    const newRequestItem = {
+      ...requestItem,
+      comments: commentsList
+    }
+
+    const newSuggestionsList = data.all.map((item) => {
+      return item.id === requestItem.id ? newRequestItem : item;
+    });
+
+    setData({
+      ...data,
+      all: newSuggestionsList
+    })
+  }
+
   const sortOrderDisplay = sortOrders.filter((item) => item.key === sortOrder)[0].title;
 
   return (
@@ -149,7 +181,7 @@ function App() {
           </Route>
           <Route path="/requests/:request_id">
             {data.all &&
-              <RequestDetails upvote={upvote} allRequests={data.all}></RequestDetails>
+              <RequestDetails upvote={upvote} allRequests={data.all} addComment={addComment}></RequestDetails>
             }
           </Route>
           <Route path="/new">
