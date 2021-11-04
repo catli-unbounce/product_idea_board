@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import RequestsListItem from '../RequestsListItem';
 import CommentsList from '../CommentsList';
-import {useParams, useHistory} from "react-router-dom";
+import {Link, useParams, useHistory} from "react-router-dom";
 import backIcon from '../../assets/shared/icon-arrow-left.svg';
 const RequestDetails = ({allRequests, upvote, addComment}) => {
     
-    let params  = useParams();
-    let requestId = parseInt(params.request_id);
-    let request = allRequests.filter((item) => item.id === requestId)[0];
+    const params  = useParams();
+    const requestId = parseInt(params.request_id);
+    const request = allRequests.filter((item) => item.id === requestId)[0];
     const history = useHistory();
     const [newComment, setNewComment] = useState('');
 
@@ -24,7 +24,7 @@ const RequestDetails = ({allRequests, upvote, addComment}) => {
                     <div className="go-back">
                         <img alt="back" src={backIcon}></img><a href="#" onClick={() => history.goBack()}>Go Back</a>
                     </div>
-                    <button className="request_details__edit-btn">Edit Feedback</button>
+                    <Link to={`/requests/${requestId}/edit`}><button className="request_details__edit-btn">Edit Feedback</button></Link>
                 </div>
                 <RequestsListItem
                     productRequest={request}
@@ -41,7 +41,7 @@ const RequestDetails = ({allRequests, upvote, addComment}) => {
                 <h3 className="new_comment_form__title">Add New Comment</h3>
                 <textarea onChange={(e) => setNewComment(e.target.value)} className="text-input" placeholder="Type your comment here" value={newComment}></textarea>
                 <div>
-                    <span className="new_comment_form__chars">250 characters left</span>
+                    <span className={250 - newComment.length < 0 ? "new_comment_form__chars error" : "new_comment_form__chars"}>{250 - newComment.length < 0 ? 0 : 250 - newComment.length} characters left</span>
                     <button onClick={(e) => handleSubmit(e)}>Post Comment</button>
                 </div>
             </form>

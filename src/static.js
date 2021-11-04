@@ -1,8 +1,8 @@
 export const sortOrders = [
-    {key: 'votes_asc', title: "Most Upvotes"},
-    {key: 'votes_desc', title: "Least Upvotes"},
-    {key: 'comments_asc', title: "Most Comments"},
-    {key: 'comments_desc', title: "Least Comments"}
+    {key: 'votes_desc', title: "Most Upvotes"},
+    {key: 'votes_asc', title: "Least Upvotes"},
+    {key: 'comments_desc', title: "Most Comments"},
+    {key: 'comments_asc', title: "Least Comments"}
 ]
     
 

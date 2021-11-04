@@ -12,10 +12,10 @@ const EditRequestForm = ({allRequests, editRequest}) => {
         title: '',
         
     })
-   
+   let requestId = 6;
     useEffect(() => {
         
-        let requestId = 6;
+        
         setShowDropdown(!showDropdown)
         let requestItem = allRequests.filter((item) => item.id === requestId)[0]; console.log('request item', requestItem)
         setNewRequest(requestItem);
@@ -31,6 +31,12 @@ const EditRequestForm = ({allRequests, editRequest}) => {
         e.preventDefault();
         editRequest(newRequest);
         history.push('/')
+    }
+
+    const handleDelete = (e) => {
+        e.preventDefault();
+        // deleteRequest(requestId)
+        history.push('/');
     }
 
     return (
@@ -64,7 +70,7 @@ const EditRequestForm = ({allRequests, editRequest}) => {
                 <textarea onChange={(e) => updateRequest('description',e.target.value)} className="text-input" name="name" value={newRequest.description}/>
             </label>
             <div className="form__btn-container">
-                <button className="delete-btn edit-request">Delete</button>
+                <button onClick={(e) => handleDelete(e)} className="delete-btn edit-request">Delete</button>
                 <button className="cancel">Cancel</button>
                 <button onClick={(e) => handleSubmit(e)} type="submit">Done</button>
             </div>
