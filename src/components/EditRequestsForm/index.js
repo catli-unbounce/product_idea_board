@@ -4,6 +4,7 @@ import arrowDownIcon from '../../assets/shared/icon-arrow-down.svg';
 import checkIcon from '../../assets/shared/icon-check.svg';
 import { useHistory, useParams } from "react-router-dom";
 const EditRequestForm = ({allRequests, editRequest}) => {
+    console.log(allRequests)
     let history = useHistory();
     
     const [showDropdown, setShowDropdown] = useState(false);
@@ -14,10 +15,7 @@ const EditRequestForm = ({allRequests, editRequest}) => {
     })
    let requestId = 6;
     useEffect(() => {
-        
-        
-        setShowDropdown(!showDropdown)
-        let requestItem = allRequests.filter((item) => item.id === requestId)[0]; console.log('request item', requestItem)
+        let requestItem = allRequests.filter((item) => item.id === requestId)[0]; 
         setNewRequest(requestItem);
     }, []);
 
@@ -71,7 +69,7 @@ const EditRequestForm = ({allRequests, editRequest}) => {
             </label>
             <div className="form__btn-container">
                 <button onClick={(e) => handleDelete(e)} className="delete-btn edit-request">Delete</button>
-                <button className="cancel">Cancel</button>
+                <button onClick={(e) => history.goBack()} className="cancel">Cancel</button>
                 <button onClick={(e) => handleSubmit(e)} type="submit">Done</button>
             </div>
             

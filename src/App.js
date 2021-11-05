@@ -18,7 +18,6 @@ import {
   Switch,
   Route,
   useHistory,
-  useRouteMatch,
 } from "react-router-dom";
 function App() {
   let history = useHistory();
@@ -169,7 +168,7 @@ function App() {
   return (
         <Switch>
           <Route path="/requests/:request_id/edit">
-            {data.all &&
+            {data.all.length > 0 &&
             <>
               <div className="go-back request-form__nav"><img alt="go back" src={backIcon}></img><a href="#" onClick={()=> history.goBack()}>Go Back</a></div>
               <div className="container">
@@ -180,7 +179,7 @@ function App() {
             }
           </Route>
           <Route path="/requests/:request_id">
-            {data.all &&
+            {data.all.length > 0 &&
               <RequestDetails upvote={upvote} allRequests={data.all} addComment={addComment}></RequestDetails>
             }
           </Route>
