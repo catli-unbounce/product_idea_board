@@ -17,8 +17,6 @@ const CommentsList = ({comments}) => {
                 {commentsList}
             </div> :
             <div></div>
-        
-        
     )
 }
 

@@ -27,8 +27,9 @@ const RequestsListItem = ({productRequest, upvote}) => {
                 <p className="request__category">{productRequest.category}</p>
             </div>
             <div className={productRequest.comments ? "request__comments" : "request__comments inactive"}>
-                <img src={commentsIcon} alt="comments icon"></img>
-                <p className="comments-count">{productRequest.comments ? productRequest.comments.length : 0}</p> 
+                
+                <img src={commentsIcon} alt="comments icon"></img><Link to={`/requests/${productRequest.id}`}>
+                <p className="comments-count">{productRequest.comments ? productRequest.comments.length : 0}</p> </Link>
             </div>
         </li>
     )

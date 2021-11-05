@@ -12,6 +12,11 @@
         &:last-child{
             border-bottom: none;
         }
+
+        .replying-to {
+            color: $fuschia;
+            font-weight: 800;
+        }
     }
 
     &__container {
