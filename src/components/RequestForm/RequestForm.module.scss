@@ -59,13 +59,8 @@
         display: flex;
         align-self: stretch;
         justify-content: flex-end;
-
-        button[type="submit"] {
-            background-color: $fuschia;
-        }
     
         .cancel {
-            background-color: $grey-3;
             margin-right: 1rem;
         }
 

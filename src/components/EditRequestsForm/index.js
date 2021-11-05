@@ -3,17 +3,18 @@ import editFeedbackIcon from '../../assets/shared/icon-edit-feedback.svg';
 import arrowDownIcon from '../../assets/shared/icon-arrow-down.svg';
 import checkIcon from '../../assets/shared/icon-check.svg';
 import { useHistory, useParams } from "react-router-dom";
-const EditRequestForm = ({allRequests, editRequest}) => {
-    console.log(allRequests)
+const EditRequestForm = ({allRequests, editRequest, deleteRequest}) => {
+    
     let history = useHistory();
     
     const [showDropdown, setShowDropdown] = useState(false);
     const [newRequest, setNewRequest] = useState({
         category: 'feature',
         title: '',
-        
     })
-   let requestId = 6;
+
+    const params  = useParams();
+    const requestId = parseInt(params.request_id);
     useEffect(() => {
         let requestItem = allRequests.filter((item) => item.id === requestId)[0]; 
         setNewRequest(requestItem);
@@ -33,7 +34,7 @@ const EditRequestForm = ({allRequests, editRequest}) => {
 
     const handleDelete = (e) => {
         e.preventDefault();
-        // deleteRequest(requestId)
+        deleteRequest(newRequest.id)
         history.push('/');
     }
 
@@ -69,8 +70,8 @@ const EditRequestForm = ({allRequests, editRequest}) => {
             </label>
             <div className="form__btn-container">
                 <button onClick={(e) => handleDelete(e)} className="delete-btn edit-request">Delete</button>
-                <button onClick={(e) => history.goBack()} className="cancel">Cancel</button>
-                <button onClick={(e) => handleSubmit(e)} type="submit">Done</button>
+                <button onClick={(e) => history.push('/')} className="btn--secondary cancel">Cancel</button>
+                <button onClick={(e) => handleSubmit(e)} className="btn--primary" type="submit">Done</button>
             </div>
             
         </form>

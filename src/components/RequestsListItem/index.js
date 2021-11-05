@@ -16,11 +16,15 @@ const RequestsListItem = ({productRequest, upvote}) => {
     }
 
     let numberOfComments = productRequest.comments? productRequest.comments.length : 0;
-    productRequest.comments.forEach(comment => {
-        if(comment.replies) {
-            numberOfComments = numberOfComments + comment.replies.length;
-        }
-    });
+
+    if(numberOfComments > 0) {
+        productRequest.comments.forEach(comment => {
+                if(comment.replies) {
+                    numberOfComments = numberOfComments + comment.replies.length;
+                }
+            });
+    }
+    
     return (
         <li className="request">
             <div className={active ? "request__votes request__votes--active" : "request__votes"} onClick={() => updateActive()}>

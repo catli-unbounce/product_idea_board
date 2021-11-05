@@ -18,6 +18,9 @@ $white: #FFFFFF;
 $aqua: #62BCFA;
 
 $error-red: #D73737;
+$error-red-hover: #E98888;
+$fuschia-hover: #C75AF6;
+$grey-3-hover: #656EA3;
 
 $tablet: 750px;
 $mobile: 500px;
@@ -185,6 +188,28 @@ textarea:focus, input:focus, select:focus{
 
 .delete-btn {
     background-color: $error-red;
+
+    &:hover {
+        background-color: $error-red-hover;
+    }
+}
+
+.btn {
+    &--primary {
+        background-color: $fuschia;
+
+        &:hover {
+            background-color: $fuschia-hover;
+        }
+    }
+
+    &--secondary {
+        background-color: $grey-3;
+
+        &:hover {
+            background-color: $grey-3-hover;
+        }
+    }
 }
 
 .error {

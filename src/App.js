@@ -72,9 +72,14 @@ function App() {
   }
 
 
-  // const deleteRequest = (request_id) => {
-    
-  // }
+  const deleteRequest = (requestId) => {
+    let listOfRequests = [...data.all];
+    listOfRequests = listOfRequests.filter((item) => item.id!= requestId);
+    setData({
+      ...data,
+      all: listOfRequests
+    })
+  }
 
   const sortSuggestions = (order) => {
     setSortOrder(order)
@@ -172,7 +177,7 @@ function App() {
             <>
               <div className="go-back request-form__nav"><img alt="go back" src={backIcon}></img><a href="#" onClick={()=> history.goBack()}>Go Back</a></div>
               <div className="container">
-                <EditRequestForm allRequests={data.all} editRequest={editRequest}></EditRequestForm>
+                <EditRequestForm deleteRequest={deleteRequest} allRequests={data.all} editRequest={editRequest}></EditRequestForm>
               </div>
             </>
               
