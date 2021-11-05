@@ -13,8 +13,14 @@ const RequestsListItem = ({productRequest, upvote}) => {
         } else {
             upvote(productRequest.id, -1)
         }
-        
     }
+
+    let numberOfComments = productRequest.comments? productRequest.comments.length : 0;
+    productRequest.comments.forEach(comment => {
+        if(comment.replies) {
+            numberOfComments = numberOfComments + comment.replies.length;
+        }
+    });
     return (
         <li className="request">
             <div className={active ? "request__votes request__votes--active" : "request__votes"} onClick={() => updateActive()}>
@@ -29,7 +35,7 @@ const RequestsListItem = ({productRequest, upvote}) => {
             <div className={productRequest.comments ? "request__comments" : "request__comments inactive"}>
                 
                 <img src={commentsIcon} alt="comments icon"></img><Link to={`/requests/${productRequest.id}`}>
-                <p className="comments-count">{productRequest.comments ? productRequest.comments.length : 0}</p> </Link>
+                <p className="comments-count">{numberOfComments}</p> </Link>
             </div>
         </li>
     )
