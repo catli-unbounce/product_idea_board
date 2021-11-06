@@ -65,8 +65,8 @@ const RequestForm = ({addNewRequest}) => {
                 <textarea onChange={(e) => updateNewRequest('description',e.target.value)} className="text-input" name="name" value={newRequest.description}/>
             </label>
             <div className="form__btn-container">
-                <button className="cancel">Cancel</button>
-                <button onClick={(e) => handleAddNewRequest(e)} type="submit">Add Feedback</button>
+                <button className="btn--secondary cancel">Cancel</button>
+                <button className="btn--primary" onClick={(e) => handleAddNewRequest(e)} type="submit">Add Feedback</button>
             </div>
             
         </form>
