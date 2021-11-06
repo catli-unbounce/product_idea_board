@@ -16,6 +16,14 @@ const RequestDetails = ({allRequests, upvote, addComment}) => {
         addComment(request, newComment);
         setNewComment('')
     }
+
+    const handleCommentUpdate = (comment) => {
+        if(newComment.length >= 250) {
+            return;
+        } else {
+            setNewComment(comment)
+        }
+    }
     return (
         <div className="request_details">
             {request &&
@@ -39,7 +47,7 @@ const RequestDetails = ({allRequests, upvote, addComment}) => {
             
             <form className="new_comment_form">
                 <h3 className="new_comment_form__title">Add New Comment</h3>
-                <textarea onChange={(e) => setNewComment(e.target.value)} className="text-input" placeholder="Type your comment here" value={newComment}></textarea>
+                <textarea onChange={(e) => handleCommentUpdate(e.target.value)} className="text-input" placeholder="Type your comment here" value={newComment}></textarea>
                 <div>
                     <span className={250 - newComment.length < 0 ? "new_comment_form__chars error" : "new_comment_form__chars"}>{250 - newComment.length < 0 ? 0 : 250 - newComment.length} characters left</span>
                     <button onClick={(e) => handleSubmit(e)}>Post Comment</button>
