@@ -95,6 +95,7 @@ button {
     @include button;
     font-family: inherit;
     font-size: 1.2rem;
+    white-space: nowrap;
 }
 
 textarea:focus, input:focus, select:focus{

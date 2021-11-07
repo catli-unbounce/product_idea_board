@@ -24,17 +24,19 @@
             margin-left: 2rem;
             font-size: 1.2rem;
             cursor: pointer;
+            white-space: nowrap;
 
             .sort-order {
                 color: $grey-1;
                 font-weight: 800;
+                margin-left: 1rem;
             }
         }
     }
 
     &__sort-dropdown {
         position: absolute;
-        right: -4rem;
+        left: 20rem;
         top: 4rem;
 
         li {

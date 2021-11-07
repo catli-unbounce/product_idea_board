@@ -3,6 +3,8 @@ import suggestionIcon from './assets/suggestions/icon-suggestions.svg'
 import {filterRequestsByStatus, sortRequests, filterRequestsByCategory} from './helpers.js';
 import {sortOrders} from './static.js';
 import backIcon from './assets/shared/icon-arrow-left.svg';
+import upArrow from './assets/shared/icon-arrow-up.svg';
+import downArrow from './assets/shared/icon-arrow-down.svg';
 import checkmarkIcon from './assets/shared/icon-check.svg';
 import './App.scss';
 import ListFilter from './components/ListFilter';
@@ -82,7 +84,8 @@ function App() {
   }
 
   const sortSuggestions = (order) => {
-    setSortOrder(order)
+    setSortOrder(order);
+    setShowMenu(false)
   }
 
   const updateFilters = (filter) => {
@@ -96,7 +99,7 @@ function App() {
     setFilters(activeFilters);
   }
 
-  const sortMenu = () => sortOrders.map((item) => {
+  const sortMenu = sortOrders.map((item) => {
     if(sortOrder === item.key) {
       return (
         <li onClick={() => sortSuggestions(item.key)} className="select-input">{item.title}<img alt="checkmark" src={checkmarkIcon}></img></li>
@@ -106,7 +109,7 @@ function App() {
         <li onClick={() => sortSuggestions(item.key)} className="select-input">{item.title}</li>
       )
     }
-    })
+  })
   
   const displaySuggestions = () => {
     let filteredSuggestions = [...data.suggestions];
@@ -217,10 +220,13 @@ function App() {
               <main>      
                 <Banner>
                   <img src={suggestionIcon} alt="banner icon"></img> Suggestions
-                  <span onClick={() => setShowMenu(!showMenu)} className="sort-by">Sort By: <span className="sort-order">{sortOrderDisplay}</span></span>
+                  <span onClick={() => setShowMenu(!showMenu)} className="sort-by">Sort By: 
+                    <span className="sort-order">{sortOrderDisplay} </span>
+                    <img alt="arrow icon" src={upArrow}></img>
+                  </span>
                   {showMenu &&
                     <ul className="banner__sort-dropdown dropdown">
-                      {sortMenu()}
+                      {sortMenu}
                     </ul>
                   }
                   
