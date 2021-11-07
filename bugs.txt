@@ -1,1 +1,7 @@
 1. style of tag as it's being clicked
+
+Enhancements
+1. React hooks
+2. Redux
+3. Reusable components
+4. Performant react components

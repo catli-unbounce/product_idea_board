@@ -90,7 +90,13 @@ function App() {
 
   const updateFilters = (filter) => {
 
+    if(filter === 'all') {
+      setFilters(['all']);
+      return;
+    } 
+
     let activeFilters = [...filters];
+    activeFilters = activeFilters.filter((item) => item !== 'all');
     if(activeFilters.includes(filter)) {
       activeFilters = activeFilters.filter((item) => item !== filter)
     } else {
