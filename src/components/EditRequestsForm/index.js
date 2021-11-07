@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import editFeedbackIcon from '../../assets/shared/icon-edit-feedback.svg';
 import arrowDownIcon from '../../assets/shared/icon-arrow-down.svg';
 import checkIcon from '../../assets/shared/icon-check.svg';
+import {categoryNames} from '../../static'
 import { useHistory, useParams } from "react-router-dom";
 const EditRequestForm = ({allRequests, editRequest, deleteRequest}) => {
     
@@ -23,6 +24,7 @@ const EditRequestForm = ({allRequests, editRequest, deleteRequest}) => {
     const updateRequest = (key, value) => {
         const formData = {...newRequest};
         formData[key] = value;
+        setShowDropdown(false)
         setNewRequest(formData);
     }
 
@@ -41,7 +43,7 @@ const EditRequestForm = ({allRequests, editRequest, deleteRequest}) => {
     return (
         <form className="form">
             <img className="new-icon" src={editFeedbackIcon}></img>
-            <h1>Editing</h1>
+            <h1>Editing '{newRequest.title}'</h1>
             <label>
                 <h5 className="label">Feedback Title</h5>
                 <p className="label-desc">Add a short, descriptive headline</p>
@@ -51,7 +53,7 @@ const EditRequestForm = ({allRequests, editRequest, deleteRequest}) => {
             <label className="form__category">
                 <h5 className="label">Category</h5>
                 <p className="label-desc">Choose a category for your feedback</p>
-                <li onClick={() => setShowDropdown(!showDropdown)} className="text-input first-option" value="feature">Feature<img src={arrowDownIcon}></img></li>
+                <li onClick={() => setShowDropdown(!showDropdown)} className="text-input first-option" value="feature">{categoryNames[newRequest.category]}<img src={arrowDownIcon}></img></li>
                 {showDropdown &&
                     <ul className="dropdown form__select-category">
                         <li onClick={() => updateRequest('category', 'feature')} className="select-input" value="feature">Feature{newRequest.category === 'feature' && <img className="check-icon" src={checkIcon}></img>}</li>

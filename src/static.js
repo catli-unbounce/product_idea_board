@@ -5,5 +5,11 @@ export const sortOrders = [
     {key: 'comments_asc', title: "Least Comments"}
 ]
     
-
+export const categoryNames = {
+    'feature': 'Feature',
+    'ui': 'UI',
+    'ux': 'UX',
+    'enhancement': 'Enhancement',
+    'bug': 'Bug'
+}
 
