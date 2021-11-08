@@ -6,9 +6,16 @@
     color: $grey-3;
     align-items: flex-start;
     border-radius: 5px;
+    width: 44rem;
+    height: 58rem;
 
     h1 {
         margin-bottom: 2rem;    
+        display: block;
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
 
     h3, p {

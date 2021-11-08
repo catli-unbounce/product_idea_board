@@ -16,9 +16,10 @@ const EditRequestForm = ({allRequests, editRequest, deleteRequest}) => {
 
     const params  = useParams();
     const requestId = parseInt(params.request_id);
+    const originalRequest = allRequests.filter((item) => item.id === requestId)[0]; 
     useEffect(() => {
-        let requestItem = allRequests.filter((item) => item.id === requestId)[0]; 
-        setNewRequest(requestItem);
+        
+        setNewRequest(originalRequest);
     }, []);
 
     const updateRequest = (key, value) => {
@@ -43,11 +44,11 @@ const EditRequestForm = ({allRequests, editRequest, deleteRequest}) => {
     return (
         <form className="form">
             <img className="new-icon" src={editFeedbackIcon}></img>
-            <h1>Editing '{newRequest.title}'</h1>
+            <h1>Editing '{originalRequest.title}'</h1>
             <label>
                 <h5 className="label">Feedback Title</h5>
                 <p className="label-desc">Add a short, descriptive headline</p>
-                <input onChange={(e) => updateRequest('title', e.target.value)} className="text-input" name="name" value={newRequest.title}/>
+                <input maxLength="100" onChange={(e) => updateRequest('title', e.target.value)} className="text-input" name="name" value={newRequest.title}/>
             </label>
 
             <label className="form__category">
@@ -68,7 +69,7 @@ const EditRequestForm = ({allRequests, editRequest, deleteRequest}) => {
             <label>
                 <h5 className="label">Feedback Detail</h5>
                 <p className="label-desc">Include any specific comments on what should be improved, added, etc.</p>
-                <textarea onChange={(e) => updateRequest('description',e.target.value)} className="text-input" name="name" value={newRequest.description}/>
+                <textarea maxLength="250" onChange={(e) => updateRequest('description',e.target.value)} className="text-input" name="name" value={newRequest.description}/>
             </label>
             <div className="form__btn-container">
                 <button onClick={(e) => handleDelete(e)} className="delete-btn edit-request">Delete</button>

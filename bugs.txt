@@ -1,4 +1,6 @@
-1. style of tag as it's being clicked
+1. editing the form changes width of the page
+2. validation?
+
 
 Enhancements
 1. React hooks

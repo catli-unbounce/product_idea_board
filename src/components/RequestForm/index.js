@@ -41,7 +41,7 @@ const RequestForm = ({addNewRequest}) => {
             <label>
                 <h5 className="label">Feedback Title</h5>
                 <p className="label-desc">Add a short, descriptive headline</p>
-                <input onChange={(e) => updateNewRequest('title', e.target.value)} className="text-input" name="name" value={newRequest.title}/>
+                <input maxLength="100" onChange={(e) => updateNewRequest('title', e.target.value)} className="text-input" name="name" value={newRequest.title}/>
             </label>
 
             <label className="form__category">
@@ -62,7 +62,7 @@ const RequestForm = ({addNewRequest}) => {
             <label>
                 <h5 className="label">Feedback Detail</h5>
                 <p className="label-desc">Include any specific comments on what should be improved, added, etc.</p>
-                <textarea onChange={(e) => updateNewRequest('description',e.target.value)} className="text-input" name="name" value={newRequest.description}/>
+                <textarea maxLength="250" onChange={(e) => updateNewRequest('description',e.target.value)} className="text-input" name="name" value={newRequest.description}/>
             </label>
             <div className="form__btn-container">
                 <button className="btn--secondary cancel">Cancel</button>
