@@ -58,9 +58,15 @@ function App() {
 
   useEffect(() => { 
     const suggestionsList = filterRequestsByStatus(data.all, 'suggestion');
+    const plannedList = filterRequestsByStatus(data.all, 'planned');
+    const liveList = filterRequestsByStatus(data.all, 'live');
+    const inProgressList = filterRequestsByStatus(data.all, 'in-progress');
     setData({
       ...data,
-      suggestions: suggestionsList
+      suggestions: suggestionsList,
+      planned: plannedList,
+      live: liveList,
+      inProgress: inProgressList
     })
   }, [data.all]);
 
