@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import commentsIcon from '../../assets/shared/icon-comments.svg';
-import upIcon from '../../assets/shared/icon-arrow-up.svg';
+import {categoryNames} from '../../static'
 import {Link} from "react-router-dom";
 const RequestsListItem = ({productRequest, upvote}) => {
     const [active, setActive] = useState(false);
@@ -19,10 +19,10 @@ const RequestsListItem = ({productRequest, upvote}) => {
 
     if(numberOfComments > 0) {
         productRequest.comments.forEach(comment => {
-                if(comment.replies) {
-                    numberOfComments = numberOfComments + comment.replies.length;
-                }
-            });
+            if(comment.replies) {
+                numberOfComments = numberOfComments + comment.replies.length;
+            }
+        });
     }
     
     return (
@@ -34,10 +34,9 @@ const RequestsListItem = ({productRequest, upvote}) => {
             <div className="request__info">
                 <h3 className="request__title"><Link to={`/requests/${productRequest.id}`}>{productRequest.title}</Link></h3>
                 <p className="request__description">{productRequest.description}</p>
-                <p className="request__category">{productRequest.category}</p>
+                <p className="request__category">{categoryNames[productRequest.category]}</p>
             </div>
             <div className={productRequest.comments ? "request__comments" : "request__comments inactive"}>
-                
                 <img src={commentsIcon} alt="comments icon"></img><Link to={`/requests/${productRequest.id}`}>
                 <p className="comments-count">{numberOfComments}</p> </Link>
             </div>
