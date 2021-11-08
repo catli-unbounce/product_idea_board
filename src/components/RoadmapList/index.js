@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Banner from '../Banner';
 import RoadmapListItem from '../RoadmapListItem';
-import {useWindowDimensions} from '../../helpers.js'
+import {useWindowDimensions} from '../../helpers.js';
+import backIcon from '../../assets/shared/icon-arrow-left.svg';
+import {useHistory} from "react-router-dom";
 const RoadmapList = ({planned, inProgress, live, upvote}) => {
 
     const [activeNav, setActiveNav] = useState(['planned']);
     const { height, width } = useWindowDimensions(); 
-    
+    let history = useHistory();
     useEffect(() => {
         const handleResize = () => { console.log(width)
             if(width > 500) {
@@ -37,6 +39,9 @@ const RoadmapList = ({planned, inProgress, live, upvote}) => {
     })
     return (
         <div className="roadmap_list">
+            <div className="go-back">
+                        <img alt="back" src={backIcon}></img><a href="#" onClick={() => history.goBack()}>Go Back</a>
+                    </div>
             <Banner><div>Roadmap</div></Banner>
             <div className="roadmap_list__mobile-nav">
                 <h4 onClick={() => setActiveNav(['planned'])} className={activeNav.includes('planned') ? "active" : ""}>Planned</h4>

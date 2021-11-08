@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import commentsIcon from '../../assets/shared/icon-comments.svg';
+import {Link} from "react-router-dom";
 const RoadmapListItem = ({title, category, upvotes, status, id, description, comments, upvote}) => {
     const [active, setActive] = useState(false);
 
@@ -22,7 +23,8 @@ const RoadmapListItem = ({title, category, upvotes, status, id, description, com
     });
     return (
         <div className={cardClass}>
-            <h4 className="roadmap_item__title">{title}</h4>
+            
+            <h4 className="roadmap_item__title"><Link to={`/requests/${id}`}>{title}</Link></h4>
             <p className="roadmap_item__desc">{description}</p>
             <p className="roadmap_item__category">{category}</p>
             <div>
