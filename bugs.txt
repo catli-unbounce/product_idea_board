@@ -1,5 +1,5 @@
-1. editing the form changes width of the page
-2. validation?
+1. validation
+2. 
 
 
 Enhancements

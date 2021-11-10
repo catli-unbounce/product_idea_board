@@ -234,7 +234,11 @@ function App() {
                   <img src={suggestionIcon} alt="banner icon"></img> Suggestions
                   <span onClick={() => setShowMenu(!showMenu)} className="sort-by">Sort By: 
                     <span className="sort-order">{sortOrderDisplay} </span>
-                    <img alt="arrow icon" src={upArrow}></img>
+                    {sortOrder === 'votes_desc' || sortOrder === 'comments_desc' ? 
+                      <img alt="arrow icon" src={downArrow}></img> : 
+                      <img alt="arrow icon" src={upArrow}></img>
+                    }
+                    
                   </span>
                   {showMenu &&
                     <ul className="banner__sort-dropdown dropdown">

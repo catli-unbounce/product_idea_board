@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import newFeedbackIcon from '../../assets/shared/icon-new-feedback.svg';
 import arrowDownIcon from '../../assets/shared/icon-arrow-down.svg';
 import checkIcon from '../../assets/shared/icon-check.svg';
+import {categoryNames} from '../../static';
 import { useHistory } from "react-router-dom";
 const RequestForm = ({addNewRequest}) => {
     let history = useHistory();
@@ -47,7 +48,7 @@ const RequestForm = ({addNewRequest}) => {
             <label className="form__category">
                 <h5 className="label">Category</h5>
                 <p className="label-desc">Choose a category for your feedback</p>
-                <li onClick={() => setShowDropdown(!showDropdown)} className="text-input first-option" value={newRequest.category}>{newRequest.category}<img src={arrowDownIcon}></img></li>
+                <li onClick={() => setShowDropdown(!showDropdown)} className="text-input first-option" value={newRequest.category}>{categoryNames[newRequest.category]}<img src={arrowDownIcon}></img></li>
                 {showDropdown &&
                     <ul className="dropdown form__select-category">
                         <li onClick={() => handleSelect('feature')} className="select-input" value="feature">Feature{newRequest.category === 'feature' && <img className="check-icon" src={checkIcon}></img>}</li>
@@ -65,7 +66,7 @@ const RequestForm = ({addNewRequest}) => {
                 <textarea maxLength="250" onChange={(e) => updateNewRequest('description',e.target.value)} className="text-input" name="name" value={newRequest.description}/>
             </label>
             <div className="form__btn-container">
-                <button className="btn--secondary cancel">Cancel</button>
+                <button className="btn--secondary cancel" onClick={history.goBack()}>Cancel</button>
                 <button className="btn--primary" onClick={(e) => handleAddNewRequest(e)} type="submit">Add Feedback</button>
             </div>
             
