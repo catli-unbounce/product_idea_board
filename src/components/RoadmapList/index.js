@@ -7,17 +7,28 @@ import {useHistory} from "react-router-dom";
 const RoadmapList = ({planned, inProgress, live, upvote}) => {
 
     const [activeNav, setActiveNav] = useState(['planned']);
-    const { height, width } = useWindowDimensions(); 
+    const [width, setWidth] = useState(window.innerWidth);
     let history = useHistory();
-    useEffect(() => {
-        const handleResize = () => { console.log(width)
-            if(width > 500) {
-                setActiveNav(['planned', 'live', 'in-progress']);
-            } else {
-                setActiveNav(['planned']);
-            }
+    const handleResize = () => { 
+        setWidth(window.innerWidth);
+        console.log(window.innerWidth)
+        if(window.innerWidth > 750) {
+            console.log("HERE")
+            setActiveNav(['planned', 'live', 'in-progress']);
+        } else {
+            setActiveNav(['planned']);
         }
+        console.log(activeNav);
+    }
+    useEffect(() => {
+        if(window.innerWidth > 750) {
+            setActiveNav(['planned', 'live', 'in-progress']);
+        } 
+        
         window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        }
       }, []);
 
     const plannedList = planned.map((item, index) => {
