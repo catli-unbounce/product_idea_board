@@ -1,5 +1,6 @@
 1. validation
-2. 
+2. upvote is not a function
+3. 
 
 
 Enhancements
